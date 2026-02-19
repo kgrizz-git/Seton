@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Seton Hall Quest is a web-based casual action-adventure game where players control Emily, the gallery director of Seton Hall University, on a quest given by the ghost of Saint Elizabeth Ann Seton. The game features four levels set on university grounds (Parking Lot, Walsh Gallery, Walsh Library, and Administration Building), combat against various enemies using thrown low-quality artworks, collectible relics with special powers, boss battles, narrative cut-scenes, and an art collection mechanic. The first three levels are designed for short gameplay sessions (30 seconds to 1 minute each), with the final level being longer and more challenging. The game incorporates historical facts about Seton Hall University (founded 1856 in South Orange, New Jersey) and Saint Elizabeth Ann Seton's life (first American-born saint, canonized 1975).
+Emily and the Ghost of Elizabeth Ann Seton is a web-based casual action-adventure game where players control Emily, the gallery director of Seton Hall University, on a quest given by the ghost of Saint Elizabeth Ann Seton. The game features four levels set on university grounds (Parking Lot, Walsh Gallery, Walsh Library, and Administration Building), combat against various enemies using thrown low-quality artworks, collectible relics with special powers, boss battles, narrative cut-scenes, and an art collection mechanic. The first three levels are designed for short gameplay sessions (30 seconds to 1 minute each), with the fourth level being longer and more challenging, and a final fifth level at the National Shrine Grotto of Our Lady of Lourdes in Emmitsburg, Maryland (the site dedicated to Saint Elizabeth Ann Seton) featuring a cave-like environment filled with demons. The game incorporates historical facts about Seton Hall University (founded 1856 in South Orange, New Jersey) and Saint Elizabeth Ann Seton's life (first American-born saint, canonized 1975).
 
 ## Glossary
 
@@ -36,29 +36,34 @@ Seton Hall Quest is a web-based casual action-adventure game where players contr
 
 ### Requirement 2: Game Initialization
 
-**User Story:** As a player, I want the game to start with an introductory cut-scene, so that I understand the quest premise.
+**User Story:** As a player, I want the game to start with a colorful retro title screen and introductory cut-scene, so that I understand the quest premise and feel engaged from the start.
 
 #### Acceptance Criteria
 
-1. WHEN the game starts, THE Game_Engine SHALL display the opening Cut_Scene showing the ghost of Saint Elizabeth Ann Seton giving Emily the quest
-2. THE Cut_Scene SHALL include Saint Elizabeth Ann Seton complaining about low-quality portraits of priests on university grounds and asking for Emily's help
-3. WHEN the opening Cut_Scene completes, THE Game_Engine SHALL transition the player to Level 1 (Parking Lot)
-4. THE Cut_Scene SHALL include Historical_Content about Saint Elizabeth Ann Seton (born 1774, died 1821, canonized September 14, 1975, first American-born saint, founded Sisters of Charity, performed miracles including curing Anne Theresa O'Neill of leukemia)
+1. WHEN the game starts, THE Game_Engine SHALL display a colorful retro-styled title screen showing the game name "Emily and the Ghost of Elizabeth Ann Seton"
+2. THE title screen SHALL play simple background music appropriate for a retro game
+3. THE title screen SHALL display a "Press SPACE to Start" prompt
+4. WHEN the player presses SPACE on the title screen, THE Game_Engine SHALL transition to the opening Cut_Scene showing the ghost of Saint Elizabeth Ann Seton giving Emily the quest
+5. THE Cut_Scene SHALL include Saint Elizabeth Ann Seton complaining about low-quality portraits of priests on university grounds and asking for Emily's help
+6. WHEN the opening Cut_Scene completes, THE Game_Engine SHALL transition the player to Level 1 (Parking Lot)
+7. THE Cut_Scene SHALL include Historical_Content about Saint Elizabeth Ann Seton (born 1774, died 1821, canonized September 14, 1975, first American-born saint, founded Sisters of Charity, performed miracles including curing Anne Theresa O'Neill of leukemia)
 
 ### Requirement 3: Level Progression
 
-**User Story:** As a player, I want to progress through four distinct levels, so that I experience varied gameplay environments with increasing challenge.
+**User Story:** As a player, I want to progress through five distinct levels, so that I experience varied gameplay environments with increasing challenge.
 
 #### Acceptance Criteria
 
-1. THE Game_Engine SHALL provide exactly four playable Levels: Parking Lot, Walsh Gallery, Walsh Library, and Administration Building
+1. THE Game_Engine SHALL provide exactly five playable Levels: Parking Lot, Walsh Gallery, Walsh Library, Administration Building, and The Grotto
 2. WHEN the player completes Level 1 objectives, THE Game_Engine SHALL unlock Level 2
 3. WHEN the player completes Level 2 objectives, THE Game_Engine SHALL unlock Level 3
 4. WHEN the player completes Level 3 objectives, THE Game_Engine SHALL unlock Level 4
-5. WHEN the player enters a new Level, THE Game_Engine SHALL load the Level layout and spawn appropriate Enemies
-6. THE Game_Engine SHALL design Levels 1, 2, and 3 for short gameplay duration (30 seconds to 1 minute each)
-7. THE Game_Engine SHALL design Level 4 as a longer, more challenging final level
-8. THE Game_Engine SHALL incorporate Historical_Content about Seton Hall University (founded 1856 by Bishop James Roosevelt Bayley, named after his aunt Saint Elizabeth Ann Seton, located in South Orange New Jersey on 58 acres, Walsh Library opened 1994 with iconic domed Rotunda) into each Level design
+5. WHEN the player completes Level 4 objectives, THE Game_Engine SHALL unlock Level 5
+6. WHEN the player enters a new Level, THE Game_Engine SHALL load the Level layout and spawn appropriate Enemies
+7. THE Game_Engine SHALL design Levels 1, 2, and 3 for short gameplay duration (30 seconds to 1 minute each)
+8. THE Game_Engine SHALL design Level 4 as a longer, more challenging level
+9. THE Game_Engine SHALL design Level 5 (The Grotto) as a cave-like environment at the National Shrine Grotto of Our Lady of Lourdes in Emmitsburg, Maryland, filled with demon enemies
+10. THE Game_Engine SHALL incorporate Historical_Content about Seton Hall University and the National Shrine Grotto dedicated to Saint Elizabeth Ann Seton into each Level design
 
 ### Requirement 4: Combat Mechanics
 

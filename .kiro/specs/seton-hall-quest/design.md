@@ -2,7 +2,7 @@
 
 ## Overview
 
-Seton Hall Quest is a browser-based 2D action-adventure game built with JavaScript and HTML5 Canvas, utilizing the Phaser 3 framework for game engine functionality. The game follows Emily, the gallery director, through four levels on Seton Hall University grounds as she completes a quest from Saint Elizabeth Ann Seton's ghost. Emily attacks by throwing low-quality artworks, and some enemies also attack by throwing artwork projectiles.
+Emily and the Ghost of Elizabeth Ann Seton is a browser-based 2D action-adventure game built with JavaScript and HTML5 Canvas, utilizing the Phaser 3 framework for game engine functionality. The game follows Emily, the gallery director, through four levels on Seton Hall University grounds as she completes a quest from Saint Elizabeth Ann Seton's ghost. Emily attacks by throwing low-quality artworks, and some enemies also attack by throwing artwork projectiles.
 
 The architecture emphasizes client-side execution with no backend dependencies. All game logic, rendering, and state management occur in the browser. The game uses localStorage for save/load functionality and loads static assets (sprites, audio, level data) via HTTP.
 
@@ -109,7 +109,7 @@ const gameConfig = {
       debug: false
     }
   },
-  scene: [BootScene, MenuScene, CampusMapScene, CutsceneScene, GameplayScene, UIScene, GameOverScene],
+  scene: [BootScene, TitleScene, MenuScene, CampusMapScene, CutsceneScene, GameplayScene, UIScene, GameOverScene],
   audio: {
     disableWebAudio: false
   }
@@ -540,7 +540,14 @@ class CampusMapScene extends Phaser.Scene {
 #### BootScene
 - Loads all assets (sprites, audio, level data, campus map)
 - Displays loading progress bar
-- Transitions to MenuScene when complete
+- Transitions to TitleScene when complete
+
+#### TitleScene
+- Displays colorful retro-styled title screen
+- Shows game name "Emily and the Ghost of Elizabeth Ann Seton"
+- Plays simple retro background music
+- Shows "Press SPACE to Start" prompt
+- Transitions to MenuScene on space key press
 
 #### MenuScene
 - Main menu UI (New Game, Load Game, Options)

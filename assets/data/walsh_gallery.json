@@ -1,0 +1,43 @@
+{
+  "id": "walsh_gallery",
+  "name": "Walsh Gallery",
+  "levelNumber": 2,
+  "duration": "short",
+  "playerSpawn": { "x": 100, "y": 360 },
+  "enemies": [
+    {
+      "type": "corrupt_priest",
+      "x": 400,
+      "y": 300,
+      "patrol": [[400, 300], [500, 300]]
+    },
+    {
+      "type": "lazy_student",
+      "x": 600,
+      "y": 400,
+      "patrol": [[600, 400], [700, 400]]
+    }
+  ],
+  "boss": null,
+  "collectibles": {
+    "relics": [
+      { "type": "fingerBone", "x": 450, "y": 250 }
+    ],
+    "artworks": [
+      { "id": "painting_02", "name": "Portrait of a Priest", "x": 550, "y": 350, "points": 100 }
+    ]
+  },
+  "cutsceneTriggers": [
+    { "x": 400, "type": "dialogue", "cutsceneId": "gallery_complaint" }
+  ],
+  "completionTrigger": {
+    "type": "allEnemiesDefeated"
+  },
+  "historicalContent": {
+    "description": "The Walsh Gallery, located on the first floor of Walsh Library, enhances the intellectual life of Seton Hall University through dynamic exhibitions.",
+    "facts": [
+      "Walsh Library opened in 1994 as a 155,000-square-foot facility",
+      "The library features an iconic domed Rotunda"
+    ]
+  }
+}

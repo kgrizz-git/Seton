@@ -6,7 +6,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
 
 ## Tasks
 
-- [-] 1. Set up project structure and Phaser 3 framework
+- [x] 1. Set up project structure and Phaser 3 framework
   - Create project directory structure (src/, assets/, config/)
   - Install Phaser 3 (v3.60+) and development dependencies
   - Create index.html with canvas element
@@ -15,7 +15,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
   - _Requirements: 10.1, 10.2_
 
 - [ ] 2. Implement asset loading system
-  - [ ] 2.1 Create BootScene with asset preloading
+  - [x] 2.1 Create BootScene with asset preloading
     - Implement loading progress bar display
     - Load sprite assets (player, enemies, projectiles, collectibles)
     - Load audio assets (music tracks, sound effects)
@@ -30,7 +30,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - _Requirements: 10.3_
 
 - [ ] 3. Implement Player component and controls
-  - [ ] 3.1 Create Player class with sprite and physics
+  - [x] 3.1 Create Player class with sprite and physics
     - Initialize player sprite with position and health
     - Implement movement logic with keyboard input (WASD/arrows)
     - Track facing direction based on movement
@@ -38,7 +38,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Set up player physics body with collision bounds
     - _Requirements: 1.1, 1.4_
   
-  - [ ] 3.2 Implement player attack system
+  - [x] 3.2 Implement player attack system
     - Create throwArtwork() method that spawns projectile
     - Set projectile velocity based on facing direction
     - Add attack cooldown (200ms) to prevent spam
@@ -64,7 +64,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - **Validates: Requirements 1.3**
 
 - [ ] 4. Implement Enemy system
-  - [ ] 4.1 Create Enemy base class
+  - [x] 4.1 Create Enemy base class
     - Initialize enemy sprite with type-specific stats
     - Implement health and damage properties
     - Create AI state machine (patrol, chase, attack)
@@ -104,7 +104,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - **Validates: Requirements 6.3**
 
 - [ ] 5. Implement Combat System
-  - [ ] 5.1 Create CombatSystem class
+  - [x] 5.1 Create CombatSystem class
     - Initialize projectile groups (player and enemy)
     - Implement createPlayerProjectile() method
     - Implement createEnemyProjectile() method
@@ -134,7 +134,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 7. Implement Relic system
-  - [ ] 7.1 Create RelicManager class
+  - [x] 7.1 Create RelicManager class
     - Define relic types (hair, fingerBone) with properties
     - Implement activateInvulnerability() method
     - Implement activateAOESpell() method
@@ -182,7 +182,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - **Validates: Requirements 8.2**
 
 - [ ] 9. Implement Level system
-  - [ ] 9.1 Create level data JSON files
+  - [x] 9.1 Create level data JSON files
     - Create parking_lot.json (Level 1 - short)
     - Create walsh_gallery.json (Level 2 - short)
     - Create walsh_library.json (Level 3 - short)
@@ -190,7 +190,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Include enemy spawns, collectibles, triggers, historical content
     - _Requirements: 3.1, 3.6, 3.7, 3.8_
   
-  - [ ] 9.2 Create LevelSystem class
+  - [x] 9.2 Create LevelSystem class
     - Implement level loading from JSON
     - Spawn enemies at configured positions
     - Place collectibles (relics and artworks)
