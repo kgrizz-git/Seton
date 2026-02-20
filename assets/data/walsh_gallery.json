@@ -27,6 +27,15 @@
       { "id": "painting_02", "name": "Portrait of a Priest", "x": 550, "y": 350, "points": 100 }
     ]
   },
+  "decorations": [
+    { "key": "dec_bust_full", "x": 200, "y": 400, "scale": 1.5 },
+    { "key": "dec_vase", "x": 750, "y": 450, "scale": 1.0 },
+    { "key": "dec_catpainting1", "x": 300, "y": 200, "scale": 1.2 },
+    { "key": "dec_catpainting2", "x": 650, "y": 200, "scale": 1.2 },
+    { "key": "dec_painting1", "x": 450, "y": 180, "scale": 1.3 },
+    { "key": "dec_painting3", "x": 800, "y": 250, "scale": 1.3 },
+    { "key": "dec_scroll", "x": 500, "y": 450, "scale": 0.8 }
+  ],
   "cutsceneTriggers": [
     { "x": 400, "type": "dialogue", "cutsceneId": "gallery_complaint" }
   ],

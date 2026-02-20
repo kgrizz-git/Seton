@@ -46,6 +46,14 @@
       { "id": "painting_05", "name": "University Seal", "x": 750, "y": 350, "points": 250 }
     ]
   },
+  "decorations": [
+    { "key": "dec_side_table", "x": 250, "y": 450, "scale": 1.2 },
+    { "key": "dec_chair_purple3", "x": 400, "y": 420, "scale": 1.0 },
+    { "key": "dec_chair_purple4", "x": 450, "y": 420, "scale": 1.0 },
+    { "key": "dec_couch_red", "x": 650, "y": 250, "scale": 1.5 },
+    { "key": "dec_desk_chair", "x": 800, "y": 300, "scale": 1.3 },
+    { "key": "dec_rug_horizontal", "x": 550, "y": 480, "scale": 1.2 }
+  ],
   "cutsceneTriggers": [
     { "x": 500, "type": "dialogue", "cutsceneId": "admin_warning" }
   ],

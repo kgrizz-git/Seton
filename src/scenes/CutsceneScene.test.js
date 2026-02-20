@@ -96,32 +96,32 @@ describe('CutsceneScene', () => {
   describe('Character Sprite Key Mapping', () => {
     test('should get correct sprite key for Emily', () => {
       scene.init({ cutsceneNumber: 1 });
-      const spriteKey = scene.getCharacterSpriteKey('emily', 'right');
+      const spriteKey = scene.getCharacterSpriteKey('emily', 'left');
       expect(spriteKey).toBe('emily-right');
     });
 
     test('should get correct sprite key for ghost in cutscenes 1-3', () => {
       scene.init({ cutsceneNumber: 1 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('round-ghost-sprite_0-left');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('round-ghost-sprite_0-left');
       
       scene.init({ cutsceneNumber: 2 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('round-ghost-sprite_0-left');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('round-ghost-sprite_0-left');
       
       scene.init({ cutsceneNumber: 3 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('round-ghost-sprite_0-left');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('round-ghost-sprite_0-left');
     });
 
     test('should get animated angel sprite for ghost in cutscenes 4-5', () => {
       scene.init({ cutsceneNumber: 4 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('angel-flipped');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('angel-flipped');
       
       scene.init({ cutsceneNumber: 5 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('angel-flipped');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('angel-flipped');
     });
 
     test('should get triumphant sprite for ghost in cutscene 6', () => {
       scene.init({ cutsceneNumber: 6 });
-      expect(scene.getCharacterSpriteKey('ghost', 'left')).toBe('anne-seton-triumphant');
+      expect(scene.getCharacterSpriteKey('ghost', 'right')).toBe('anne-seton-triumphant');
     });
 
     test('should return character name for unmapped characters', () => {

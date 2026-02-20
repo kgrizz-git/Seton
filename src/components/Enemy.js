@@ -244,9 +244,9 @@ export default class Enemy {
     // Randomly choose between the two evil laugh sounds
     const soundKey = Math.random() < 0.5 ? 'priest_evil_00' : 'priest_evil_02';
     
-    // Check if sound exists in cache and play it
+    // Check if sound exists in cache and play it with increased volume
     if (this.scene.cache.audio.exists(soundKey)) {
-      this.scene.sound.play(soundKey, { volume: 0.4 });
+      this.scene.sound.play(soundKey, { volume: 0.7 });
       console.log(`Playing evil laugh: ${soundKey}`);
     } else {
       console.warn(`Evil laugh sound not found: ${soundKey}`);
@@ -388,6 +388,11 @@ export default class Enemy {
 
   die() {
     console.log(`${this.type} defeated!`);
+    
+    // Play die sound
+    if (this.scene.sound.get('die_sound')) {
+      this.scene.sound.play('die_sound', { volume: 0.4 });
+    }
     
     // Death animation (simple fade out)
     this.scene.tweens.add({

@@ -7,6 +7,23 @@ This is a personal tracking document for development tasks. For formal requireme
 - `.kiro/specs/seton-hall-quest/tasks.md`
 
 ---
+## Personal notes
+- Ask Gemini or other AIs to make pixel art to use
+  - may be other tools to use online to transform some other picture/sprite into pixel art
+- Add more variations on enemies 
+  - eg, coder as another student type 
+  - or replace skater w/ coder, plus agent and beachnpc
+- ask if kiro knows how to use sprite sheets with multiple sub-sprites on one png, or look into it myself
+- add more sound fx
+- add more music
+- add a way to skip cut scenes
+- add a way to genuinely save/load
+- not seeing finger bone
+- hair always in same place?
+- improve decoration sizing, placement
+- add walls?
+
+---
 
 ## Visual Assets
 

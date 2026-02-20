@@ -10,8 +10,19 @@ export default class GameplayScene extends Phaser.Scene {
   }
 
   init(data) {
-    // Get level to load (default to parking_lot)
-    this.levelToLoad = data.level || 'parking_lot';
+    // Get level to load - convert number to level ID if needed
+    if (typeof data.level === 'number') {
+      const levelMap = {
+        1: 'parking_lot',
+        2: 'walsh_gallery',
+        3: 'walsh_library',
+        4: 'admin_building',
+        5: 'grotto'
+      };
+      this.levelToLoad = levelMap[data.level] || 'parking_lot';
+    } else {
+      this.levelToLoad = data.level || 'parking_lot';
+    }
     this.isPaused = false;
   }
 
@@ -33,6 +44,9 @@ export default class GameplayScene extends Phaser.Scene {
     // Load the level (no longer async, returns immediately)
     this.levelSystem.loadLevel(this.levelToLoad);
     
+    // Start level music
+    this.startLevelMusic();
+    
     // Set up event listeners
     this.events.on('playerAttack', (attackData) => {
       this.combatSystem.createPlayerProjectile(attackData);
@@ -51,6 +65,10 @@ export default class GameplayScene extends Phaser.Scene {
     
     this.events.on('playerDied', () => {
       console.log('Game Over!');
+      // Stop music
+      if (this.currentMusic) {
+        this.currentMusic.stop();
+      }
       const totalPoints = this.player.inventory.artworks.reduce((sum, art) => sum + art.points, 0);
       const artworksCount = this.player.inventory.artworks.length;
       this.scene.start('GameOverScene', { score: totalPoints, artworks: artworksCount });
@@ -75,6 +93,34 @@ export default class GameplayScene extends Phaser.Scene {
     
     // UI
     this.createUI();
+  }
+
+  startLevelMusic() {
+    // Stop any existing music
+    if (this.currentMusic) {
+      this.currentMusic.stop();
+    }
+    
+    // Determine which music to play based on level
+    let musicKey;
+    
+    if (this.levelToLoad === 'grotto') {
+      // Final level - play Showdown of Misdeeds
+      musicKey = 'grotto_music';
+    } else {
+      // Levels 1-4 - randomly select from the 5 tracks
+      const randomTracks = ['level_music_1', 'level_music_2', 'level_music_3', 'level_music_4', 'level_music_5'];
+      musicKey = Phaser.Utils.Array.GetRandom(randomTracks);
+    }
+    
+    // Play the selected music
+    if (this.sound.get(musicKey)) {
+      this.currentMusic = this.sound.play(musicKey, { 
+        volume: 0.5, 
+        loop: true 
+      });
+      console.log(`Playing level music: ${musicKey}`);
+    }
   }
 
   createUI() {
@@ -114,9 +160,19 @@ export default class GameplayScene extends Phaser.Scene {
   handleLevelComplete(levelNum) {
     console.log(`Level ${levelNum} complete!`);
     
+    // Stop level music
+    if (this.currentMusic) {
+      this.currentMusic.stop();
+    }
+    
+    // Play win sound
+    if (this.sound.get('win_sound')) {
+      this.sound.play('win_sound', { volume: 0.6 });
+    }
+    
     // Check if this is the final level (grotto = level 5)
     if (levelNum === 5) {
-      // Show victory screen
+      // Show victory cutscene (Cutscene 6)
       this.showFinalVictory();
       return;
     }
@@ -138,15 +194,37 @@ export default class GameplayScene extends Phaser.Scene {
     
     // Wait for space key
     this.input.keyboard.once('keydown-SPACE', () => {
-      const nextLevel = this.levelSystem.getNextLevel();
+      // Trigger cutscene after level completion
+      const cutsceneMap = {
+        1: 'cutscene2',  // After parking lot -> Gallery cutscene
+        2: 'cutscene3',  // After gallery -> Library cutscene
+        3: 'cutscene4',  // After library -> Admin cutscene
+        4: 'cutscene5'   // After admin -> Journey to Emmitsburg cutscene
+      };
       
-      if (nextLevel) {
-        // Load next level
-        this.scene.restart({ level: nextLevel });
+      const cutsceneId = cutsceneMap[levelNum];
+      
+      if (cutsceneId) {
+        // Import cutscene data
+        import('../data/cutscenes.js').then(module => {
+          const cutsceneData = module.getCutscene(cutsceneId);
+          if (cutsceneData) {
+            this.scene.start('CutsceneScene', cutsceneData);
+          } else {
+            console.warn(`Cutscene not found: ${cutsceneId}`);
+            // Fallback to campus map
+            this.scene.start('CampusMapScene', { level: levelNum + 1 });
+          }
+        });
       } else {
-        // Game complete!
-        console.log('Game Complete!');
-        this.scene.start('VictoryScene');
+        // No cutscene, go to next level
+        const nextLevel = this.levelSystem.getNextLevel();
+        if (nextLevel) {
+          this.scene.restart({ level: nextLevel });
+        } else {
+          console.log('Game Complete!');
+          this.scene.start('VictoryScene');
+        }
       }
     });
   }
@@ -179,7 +257,16 @@ export default class GameplayScene extends Phaser.Scene {
     
     // Wait for space key
     this.input.keyboard.once('keydown-SPACE', () => {
-      this.scene.start('VictoryScene');
+      // Trigger final victory cutscene (Cutscene 6)
+      import('../data/cutscenes.js').then(module => {
+        const cutsceneData = module.getCutscene('cutscene6');
+        if (cutsceneData) {
+          this.scene.start('CutsceneScene', cutsceneData);
+        } else {
+          console.warn('Final cutscene not found');
+          this.scene.start('VictoryScene');
+        }
+      });
     });
   }
 
@@ -222,9 +309,17 @@ export default class GameplayScene extends Phaser.Scene {
     if (this.isPaused) {
       this.showPauseMenu();
       this.physics.pause();
+      // Pause music
+      if (this.currentMusic && this.currentMusic.isPlaying) {
+        this.currentMusic.pause();
+      }
     } else {
       this.hidePauseMenu();
       this.physics.resume();
+      // Resume music
+      if (this.currentMusic && this.currentMusic.isPaused) {
+        this.currentMusic.resume();
+      }
     }
   }
 

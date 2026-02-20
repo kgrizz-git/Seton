@@ -234,6 +234,12 @@ export default class Player {
 
   die() {
     console.log('Player died!');
+    
+    // Play lose sound
+    if (this.scene.sound.get('lose_sound')) {
+      this.scene.sound.play('lose_sound', { volume: 0.5 });
+    }
+    
     this.sprite.setActive(false);
     this.sprite.setVisible(false);
     

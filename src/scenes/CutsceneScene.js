@@ -45,6 +45,9 @@ export default class CutsceneScene extends Phaser.Scene {
   create() {
     console.log(`CutsceneScene: Creating cutscene ${this.cutsceneId}...`);
     
+    // Start cutscene music
+    this.startCutsceneMusic();
+    
     // Create background
     this.createBackground();
     
@@ -67,10 +70,23 @@ export default class CutsceneScene extends Phaser.Scene {
     this.setupInputHandlers();
   }
 
+  startCutsceneMusic() {
+    // Use a calm atmospheric track for cutscenes
+    // Using "Doll House (Glockenspiel).mp3" for its gentle, contemplative mood
+    if (this.sound.get('title_music')) {
+      this.cutsceneMusic = this.sound.play('title_music', {
+        volume: 0.4,
+        loop: true
+      });
+      console.log('Playing cutscene music');
+    }
+  }
+
   createBackground() {
     // Add background image or color
     if (this.textures.exists(this.backgroundKey)) {
-      this.add.image(640, 360, this.backgroundKey);
+      // Tile the background to cover the entire window
+      const bg = this.add.tileSprite(640, 360, 1280, 720, this.backgroundKey);
     } else {
       // Fallback to gradient background
       const graphics = this.add.graphics();
@@ -281,30 +297,31 @@ export default class CutsceneScene extends Phaser.Scene {
     }
     
     // Display appropriate character sprites and portraits
+    // Emily on the LEFT side, Saint Elizabeth Ann Seton on the RIGHT side
     if (speaker === 'emily') {
-      // Emily on the right side
-      this.displayCharacterSprite('emily', 'right');
+      // Emily on the left side
+      this.displayCharacterSprite('emily', 'left');
       this.displayPortrait('emily');
       
-      // Ensure ghost is visible on left (if not already displayed)
-      if (!this.characterSprites.left) {
-        this.displayCharacterSprite('ghost', 'left');
+      // Ensure ghost is visible on right (if not already displayed)
+      if (!this.characterSprites.right) {
+        this.displayCharacterSprite('ghost', 'right');
       }
       // Dim the ghost when Emily is speaking
-      if (this.characterSprites.left) {
-        this.characterSprites.left.setAlpha(0.5);
-      }
-    } else if (speaker === 'ghost') {
-      // Ghost on the left side
-      this.displayCharacterSprite('ghost', 'left');
-      
-      // Ensure Emily is visible on right (if not already displayed)
-      if (!this.characterSprites.right) {
-        this.displayCharacterSprite('emily', 'right');
-      }
-      // Dim Emily when ghost is speaking
       if (this.characterSprites.right) {
         this.characterSprites.right.setAlpha(0.5);
+      }
+    } else if (speaker === 'ghost') {
+      // Ghost on the right side
+      this.displayCharacterSprite('ghost', 'right');
+      
+      // Ensure Emily is visible on left (if not already displayed)
+      if (!this.characterSprites.left) {
+        this.displayCharacterSprite('emily', 'left');
+      }
+      // Dim Emily when ghost is speaking
+      if (this.characterSprites.left) {
+        this.characterSprites.left.setAlpha(0.5);
       }
     }
   }
@@ -426,12 +443,12 @@ export default class CutsceneScene extends Phaser.Scene {
    */
   getCharacterSpriteKey(character, position) {
     // Map character and position to sprite keys
-    // Based on plot-and-narrative.md specifications
+    // Emily on LEFT (facing RIGHT), Saint Elizabeth Ann Seton on RIGHT (facing LEFT)
     if (character === 'emily') {
-      return 'emily-right'; // emily-right.png (standing sprite)
+      return 'emily-right'; // emily-right.png (facing right, positioned on left)
     } else if (character === 'ghost') {
       // Ghost sprite changes based on cutscene progression
-      // Cutscenes 1-3: round-ghost-sprite_0-left.png (ghostly form)
+      // Cutscenes 1-3: round-ghost-sprite_0-left.png (facing left, positioned on right)
       // Cutscenes 4-5: angel-flipped.gif (animated angelic form)
       // Cutscene 6: anne-seton-triumphant.gif (animated triumphant form)
       
@@ -514,6 +531,11 @@ export default class CutsceneScene extends Phaser.Scene {
     this.skipRequested = true;
     console.log('Skipping cutscene...');
     
+    // Stop cutscene music
+    if (this.cutsceneMusic) {
+      this.cutsceneMusic.stop();
+    }
+    
     // Fade out
     this.cameras.main.fadeOut(500, 0, 0, 0);
     
@@ -527,6 +549,11 @@ export default class CutsceneScene extends Phaser.Scene {
    */
   endCutscene() {
     console.log('Cutscene complete, transitioning to next scene...');
+    
+    // Stop cutscene music
+    if (this.cutsceneMusic) {
+      this.cutsceneMusic.stop();
+    }
     
     // Fade out
     this.cameras.main.fadeOut(1000, 0, 0, 0);

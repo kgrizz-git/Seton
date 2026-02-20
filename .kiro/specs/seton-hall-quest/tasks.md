@@ -240,7 +240,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Ensure .gif animations play correctly in Phaser
     - _Requirements: 7.2, 13.2_
   
-  - [-] 10.3 Create Cutscene 1: The Ghostly Summons (Opening)
+  - [x] 10.3 Create Cutscene 1: The Ghostly Summons (Opening)
     - Implement parking lot background display
     - Configure Emily sprite (emily-right.png) and dialogue portrait (emily-headshot-for-cutscenes+dialog.png)
     - Configure Saint Elizabeth sprite (round-ghost-sprite_0-left.png)
@@ -249,7 +249,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to campus map showing Parking Lot location
     - _Requirements: 2.2, 7.4, 11.1_
   
-  - [ ] 10.4 Create Cutscene 2: The Gallery Complaint (Before Level 2)
+  - [x] 10.4 Create Cutscene 2: The Gallery Complaint (Before Level 2)
     - Implement campus map background highlighting Walsh Gallery
     - Configure character sprites (Emily and Saint Elizabeth in ghost form)
     - Add dialogue about gallery corruption and bad portraits
@@ -257,7 +257,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to Level 2 gameplay
     - _Requirements: 2.3, 7.4, 11.1_
   
-  - [ ] 10.5 Create Cutscene 3: The Library's Secrets (Before Level 3)
+  - [x] 10.5 Create Cutscene 3: The Library's Secrets (Before Level 3)
     - Implement campus map background highlighting Walsh Library
     - Configure character sprites (Emily and Saint Elizabeth in ghost form)
     - Add dialogue about miracles and foreshadowing the Grotto
@@ -265,7 +265,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to Level 3 gameplay
     - _Requirements: 2.4, 7.4, 11.2_
   
-  - [ ] 10.6 Create Cutscene 4: The Administrative Evil (Before Level 4)
+  - [x] 10.6 Create Cutscene 4: The Administrative Evil (Before Level 4)
     - Implement campus map background highlighting Administration Building
     - Configure Saint Elizabeth sprite upgrade to angel-flipped.gif (animated angelic form)
     - Add dialogue revealing Satan has taken over the Grotto
@@ -273,7 +273,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to Level 4 gameplay
     - _Requirements: 2.4, 7.4, 11.2_
   
-  - [ ] 10.7 Create Cutscene 5: The Journey to Emmitsburg (Before Level 5)
+  - [x] 10.7 Create Cutscene 5: The Journey to Emmitsburg (Before Level 5)
     - Implement travel montage backgrounds (leaving campus, highway, arriving at Grotto)
     - Display Grotto exterior background
     - Configure Saint Elizabeth sprite (angel-flipped.gif animated form)
@@ -282,7 +282,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to Level 5 gameplay (The Grotto)
     - _Requirements: 2.4, 7.4, 11.2_
   
-  - [ ] 10.8 Create Cutscene 6: Victory and Transfiguration (After Level 5)
+  - [x] 10.8 Create Cutscene 6: Victory and Transfiguration (After Level 5)
     - Implement cave interior background with lighting effects (darkness to light)
     - Configure Saint Elizabeth transformation sequence (angel-flipped.gif to anne-seton-triumphant.gif)
     - Add victory dialogue and saint's glorified form revelation
@@ -291,7 +291,7 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - Transition to game end
     - _Requirements: 7.4, 7.6, 11.2_
   
-  - [ ] 10.9 Integrate cutscenes with game flow
+  - [x] 10.9 Integrate cutscenes with game flow
     - Trigger Cutscene 1 at game start after title screen
     - Trigger Cutscene 2 after completing Level 1
     - Trigger Cutscene 3 after completing Level 2

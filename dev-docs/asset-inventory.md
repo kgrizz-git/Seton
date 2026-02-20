@@ -10,7 +10,8 @@ This document tracks all assets used in "Emily and the Ghost of Elizabeth Ann Se
 | `assets/sprites/` | `emily-down.png` | Player character facing down (scale: 2.5x) | ✓ Active |
 | `assets/sprites/` | `emily-up.png` | Player character facing up (scale: 2.5x) | ✓ Active |
 | `assets/sprites/` | `emily-left.png` | Player character facing left (scale: 2.5x) | ✓ Active |
-| `assets/sprites/` | `emily-right.png` | Player character facing right (scale: 2.5x) | ✓ Active |
+| `assets/sprites/` | `emily-right.png` | Player character facing right (scale: 2.5x) + Cutscene sprite (positioned LEFT, facing RIGHT) | ✓ Active |
+| `assets/sprites/` | `emily-headshot-for-cutscenes+dialog.png` | Emily dialogue portrait in cutscenes (scale: 1.2x) | ✓ Active |
 | `assets/sprites/` | `Priest.png` | Corrupt priest enemy (legacy) | ⚠️ Unused |
 | `assets/sprites/` | `priest-catholic.png` | Corrupt priest enemy (scale: 1.2x) | ✓ Active |
 | `assets/sprites/` | `teacher-left.png` | Clueless admin enemy facing left (scale: 1.75x) | ✓ Active |
@@ -20,6 +21,10 @@ This document tracks all assets used in "Emily and the Ghost of Elizabeth Ann Se
 | `assets/sprites/` | `admin.png` | Clueless admin enemy (legacy) | ⚠️ Unused |
 | `assets/sprites/` | `student.png` | Lazy student enemy (legacy) | ⚠️ Unused |
 | `assets/sprites/` | `ghost.png` | Ghost enemy (scale: 2.5x) | ✓ Active |
+| `assets/sprites/` | `round-ghost-sprite_0-left.png` | Saint Elizabeth Ann Seton ghost form (cutscenes 1-3, positioned RIGHT, facing LEFT, scale: 2.0x) | ✓ Active |
+| `assets/sprites/` | `round-ghost-sprite_0-right.png` | Saint Elizabeth Ann Seton ghost form (loaded but not used in cutscenes) | ⚠️ Loaded |
+| `assets/sprites/` | `angel-flipped.gif` | Saint Elizabeth Ann Seton angelic form (cutscenes 4-5, animated, scale: 2.5x) | ✓ Active |
+| `assets/sprites/` | `anne-seton-triumphant.gif` | Saint Elizabeth Ann Seton triumphant form (cutscene 6, animated, scale: 3.0x) | ✓ Active |
 | `assets/sprites/` | `demon.png` | Demon enemy (scale: 0.7x) | ✓ Active |
 | `assets/sprites/` | `bat.png` | Bat enemy (scale: 1.5x) | ✓ Active |
 | `assets/sprites/` | `rat.png` | Rat enemy (scale: 1.2x) | ✓ Active |
@@ -38,11 +43,19 @@ This document tracks all assets used in "Emily and the Ghost of Elizabeth Ann Se
 
 | Path | Filename | Used For | Status |
 |------|----------|----------|--------|
-| `assets/backgrounds/` | `parking-lot-bg.png` | Parking Lot level background (tiled) - asphalt texture | ✓ Active |
+| `assets/backgrounds/` | `parking-lot-bg.png` | Parking Lot level background (tiled) - asphalt texture + Cutscene 1 background | ✓ Active |
 | `assets/backgrounds/` | `gallery-bg.png` | Walsh Gallery level background (tiled) - snowRocks texture | ✓ Active |
 | `assets/backgrounds/` | `library-bg.png` | Walsh Library level background (tiled) - wood tile texture | ✓ Active |
 | `assets/backgrounds/` | `admin-bg.png` | Admin Building level background (tiled) - violetRocks texture | ✓ Active |
-| `assets/backgrounds/` | `grotto-bg.png` | The Grotto level background (tiled) - cave wall texture | ✓ Active |
+| `assets/backgrounds/` | `grotto-bg.png` | The Grotto level background (tiled) - cave wall texture + Cutscene 6 background | ✓ Active |
+
+## Cutscene Backgrounds
+
+| Path | Filename | Used For | Status |
+|------|----------|----------|--------|
+| `assets/backgrounds/` | `parking-lot-bg.png` | Cutscene 1 background (tiled) | ✓ Active |
+| N/A | Campus map (procedural) | Cutscenes 2-5 background (generated in CampusMapScene) | ✓ Active |
+| `assets/backgrounds/` | `grotto-bg.png` | Cutscene 6 background (tiled, cave interior) | ✓ Active |
 
 ## Collectibles - Paintings
 
@@ -55,6 +68,45 @@ All paintings are used as throwable projectiles (scale: 0.8x - about 1/3 player 
 | `assets/sprites/paintings/` | `painting-03.png` | Collectible artwork | ✓ Active |
 
 **Note:** Only 3 paintings are currently available. Old painting JPG files (painting-01.jpg through painting-39.jpg) have been removed.
+
+## Level Decorations
+
+Decorative sprites placed in levels to enhance visual atmosphere. Scaled between 25% and 250% of player character size.
+
+| Path | Filename | Used For | Status |
+|------|----------|----------|--------|
+| `assets/sprites/decorations/` | `flower_bush1.png` | Level 1 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `flowers-potted1.png` | Level 1 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `fountain_1.png` | Level 1 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `lamppost1.png` | Level 1 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `tree_full1.png` | Level 1 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `church.gif` | Level 1 decoration (large building) | ✓ Active |
+| `assets/sprites/decorations/` | `bust_full1.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `vase1.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `catpainting1.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `catpainting2.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `painting1.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `painting3.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `reiwa_era_scroll_01.png` | Level 2 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `bookshelves1.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `chair-purple3.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `chair-purple4.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `couch-red1.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `desk-w-chair1.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `rug-horizontal1.png` | Level 3 & 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `side-table1.png` | Level 4 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `skeleton-manacled1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `skulls1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `mudspots1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `fire1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `candelabra-big1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `bone-pile1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `bloodsplatter3.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `bloodsplatter1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `web4.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `web2.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `standingstones1.png` | Level 5 decoration | ✓ Active |
+| `assets/sprites/decorations/` | `standingstones-flipped1.png` | Level 5 decoration | ✓ Active |
 
 ## Title Screen Decorations
 
@@ -150,6 +202,30 @@ All backgrounds are rendered as tiled sprites at 60% opacity to maintain gamepla
 ## Asset Loading Location
 
 All assets are loaded in: `src/scenes/BootScene.js` in the `loadPlaceholderAssets()` method.
+
+## Cutscene Data
+
+All cutscene dialogue and configuration is stored in: `src/data/cutscenes.js`
+
+### Cutscene Files
+
+| Cutscene ID | Name | Dialogue Segments | Trigger | Status |
+|-------------|------|-------------------|---------|--------|
+| `cutscene1` / `opening` | The Ghostly Summons | 20 | Game start (after title screen) | ✓ Active |
+| `cutscene2` / `gallery_complaint` | The Gallery Complaint | 11 | After Level 1 completion | ✓ Active |
+| `cutscene3` / `library_secrets` | The Library's Secrets | 11 | After Level 2 completion | ✓ Active |
+| `cutscene4` / `administrative_evil` | The Administrative Evil | 20 | After Level 3 completion | ✓ Active |
+| `cutscene5` / `journey_to_emmitsburg` | The Journey to Emmitsburg | 21 | After Level 4 completion | ✓ Active |
+| `cutscene6` / `victory_transfiguration` | Victory and Transfiguration | 23 | After Level 5 completion | ✓ Active |
+
+### Cutscene Features
+- **Character Positioning**: Emily (LEFT, facing RIGHT), Saint Elizabeth Ann Seton (RIGHT, facing LEFT)
+- **Sprite Progression**: Ghost form (cutscenes 1-3) → Angel form (cutscenes 4-5) → Triumphant form (cutscene 6)
+- **Dialogue Advancement**: SPACE or ENTER key
+- **Skip Functionality**: ESC key
+- **Historical Notes**: Displayed at appropriate dialogue points
+- **Background Tiling**: All backgrounds tile to cover 1280x720 window
+- **Transitions**: Automatic scene transitions to CampusMapScene or VictoryScene
 
 ## Notes
 

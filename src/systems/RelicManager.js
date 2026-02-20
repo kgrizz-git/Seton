@@ -46,6 +46,11 @@ export default class RelicManager {
       return;
     }
     
+    // Play achievement sound
+    if (this.scene.sound.get('achievement_sound')) {
+      this.scene.sound.play('achievement_sound', { volume: 0.5 });
+    }
+    
     player.isInvulnerable = true;
     
     // Visual feedback - golden glow
@@ -113,6 +118,11 @@ export default class RelicManager {
     const aoeDamage = this.relicTypes.fingerBone.damage;
     
     console.log(`AOE Spell activated! Radius: ${aoeRadius}, Damage: ${aoeDamage}`);
+    
+    // Play achievement sound
+    if (this.scene.sound.get('achievement_sound')) {
+      this.scene.sound.play('achievement_sound', { volume: 0.5 });
+    }
     
     // Create visual effect - expanding circle
     const aoeCircle = this.scene.add.circle(

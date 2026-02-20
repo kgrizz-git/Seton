@@ -147,9 +147,10 @@ export default class CombatSystem {
           // Visual feedback - hit effect
           this.createHitEffect(enemy.sprite.x, enemy.sprite.y);
           
-          // Audio feedback
-          if (this.scene.sound.get('throw_sound')) {
-            this.scene.sound.play('throw_sound', { volume: 0.2 });
+          // Audio feedback - randomly play hit1 or hit5
+          const hitSound = Math.random() < 0.5 ? 'hit1_sound' : 'hit5_sound';
+          if (this.scene.sound.get(hitSound)) {
+            this.scene.sound.play(hitSound, { volume: 0.4 });
           }
         }
       });
@@ -167,9 +168,10 @@ export default class CombatSystem {
           // Visual feedback - hit effect
           this.createHitEffect(player.sprite.x, player.sprite.y);
           
-          // Audio feedback
-          if (this.scene.sound.get('ghost_sound')) {
-            this.scene.sound.play('ghost_sound', { volume: 0.3 });
+          // Audio feedback - randomly play hit1 or hit5
+          const hitSound = Math.random() < 0.5 ? 'hit1_sound' : 'hit5_sound';
+          if (this.scene.sound.get(hitSound)) {
+            this.scene.sound.play(hitSound, { volume: 0.3 });
           }
         }
       }

@@ -7,6 +7,7 @@ export default class LevelSystem {
     this.levelData = null;
     this.enemies = [];
     this.collectibles = [];
+    this.decorations = [];
     this.levelProgress = {
       level1Complete: false,
       level2Complete: false,
@@ -54,6 +55,14 @@ export default class LevelSystem {
           "relics": [{ "type": "hair", "x": 350, "y": 250 }],
           "artworks": [{ "id": "painting_01", "name": "Bad Parking Sign", "x": 450, "y": 350, "points": 50 }]
         },
+        "decorations": [
+          { "key": "dec_flower_bush", "x": 200, "y": 450, "scale": 1.2 },
+          { "key": "dec_flowers_potted", "x": 700, "y": 420, "scale": 0.8 },
+          { "key": "dec_fountain", "x": 600, "y": 250, "scale": 1.5 },
+          { "key": "dec_lamppost", "x": 250, "y": 200, "scale": 1.8 },
+          { "key": "dec_tree_full", "x": 800, "y": 300, "scale": 2.0 },
+          { "key": "dec_church", "x": 400, "y": 100, "scale": 2.5 }
+        ],
         "cutsceneTriggers": [],
         "completionTrigger": { "type": "allEnemiesDefeated" },
         "historicalContent": {
@@ -76,6 +85,15 @@ export default class LevelSystem {
           "relics": [{ "type": "fingerBone", "x": 450, "y": 250 }],
           "artworks": [{ "id": "painting_02", "name": "Portrait of a Priest", "x": 550, "y": 350, "points": 100 }]
         },
+        "decorations": [
+          { "key": "dec_bust_full", "x": 200, "y": 400, "scale": 1.5 },
+          { "key": "dec_vase", "x": 750, "y": 450, "scale": 1.0 },
+          { "key": "dec_catpainting1", "x": 300, "y": 200, "scale": 1.2 },
+          { "key": "dec_catpainting2", "x": 650, "y": 200, "scale": 1.2 },
+          { "key": "dec_painting1", "x": 450, "y": 180, "scale": 1.3 },
+          { "key": "dec_painting3", "x": 800, "y": 250, "scale": 1.3 },
+          { "key": "dec_scroll", "x": 500, "y": 450, "scale": 0.8 }
+        ],
         "cutsceneTriggers": [],
         "completionTrigger": { "type": "allEnemiesDefeated" },
         "historicalContent": {
@@ -99,6 +117,14 @@ export default class LevelSystem {
           "relics": [{ "type": "hair", "x": 400, "y": 250 }],
           "artworks": [{ "id": "painting_03", "name": "Library Mural", "x": 600, "y": 300, "points": 150 }]
         },
+        "decorations": [
+          { "key": "dec_bookshelves", "x": 200, "y": 250, "scale": 1.8 },
+          { "key": "dec_chair_purple3", "x": 450, "y": 450, "scale": 1.0 },
+          { "key": "dec_chair_purple4", "x": 500, "y": 450, "scale": 1.0 },
+          { "key": "dec_couch_red", "x": 750, "y": 400, "scale": 1.5 },
+          { "key": "dec_desk_chair", "x": 300, "y": 350, "scale": 1.3 },
+          { "key": "dec_rug_horizontal", "x": 600, "y": 480, "scale": 1.2 }
+        ],
         "cutsceneTriggers": [],
         "completionTrigger": { "type": "allEnemiesDefeated" },
         "historicalContent": {
@@ -129,6 +155,14 @@ export default class LevelSystem {
             { "id": "painting_05", "name": "University Seal", "x": 750, "y": 350, "points": 250 }
           ]
         },
+        "decorations": [
+          { "key": "dec_side_table", "x": 250, "y": 450, "scale": 1.2 },
+          { "key": "dec_chair_purple3", "x": 400, "y": 420, "scale": 1.0 },
+          { "key": "dec_chair_purple4", "x": 450, "y": 420, "scale": 1.0 },
+          { "key": "dec_couch_red", "x": 650, "y": 250, "scale": 1.5 },
+          { "key": "dec_desk_chair", "x": 800, "y": 300, "scale": 1.3 },
+          { "key": "dec_rug_horizontal", "x": 550, "y": 480, "scale": 1.2 }
+        ],
         "cutsceneTriggers": [],
         "completionTrigger": { "type": "allEnemiesDefeated" },
         "historicalContent": {
@@ -170,6 +204,20 @@ export default class LevelSystem {
             { "id": "painting_01", "name": "Sacred Relic", "x": 700, "y": 250, "points": 350 }
           ]
         },
+        "decorations": [
+          { "key": "dec_skeleton_manacled", "x": 200, "y": 450, "scale": 1.5 },
+          { "key": "dec_skulls", "x": 750, "y": 200, "scale": 1.2 },
+          { "key": "dec_mudspots", "x": 400, "y": 480, "scale": 0.8 },
+          { "key": "dec_fire", "x": 300, "y": 250, "scale": 1.8 },
+          { "key": "dec_candelabra_big", "x": 650, "y": 300, "scale": 1.5 },
+          { "key": "dec_bone_pile", "x": 500, "y": 450, "scale": 1.3 },
+          { "key": "dec_bloodsplatter3", "x": 350, "y": 400, "scale": 1.0 },
+          { "key": "dec_bloodsplatter1", "x": 800, "y": 350, "scale": 1.0 },
+          { "key": "dec_web4", "x": 250, "y": 150, "scale": 1.5 },
+          { "key": "dec_web2", "x": 700, "y": 180, "scale": 1.5 },
+          { "key": "dec_standingstones", "x": 550, "y": 300, "scale": 2.0 },
+          { "key": "dec_standingstones_flipped", "x": 850, "y": 400, "scale": 2.0 }
+        ],
         "cutsceneTriggers": [],
         "completionTrigger": { "type": "allEnemiesDefeated" },
         "historicalContent": {
@@ -200,6 +248,9 @@ export default class LevelSystem {
     
     // Add level background
     this.addLevelBackground();
+    
+    // Place decorations (before enemies and collectibles so they're in the background)
+    this.placeDecorations();
     
     // Spawn player at start position
     if (this.scene.player) {
@@ -293,6 +344,32 @@ export default class LevelSystem {
         this.createCollectible('artwork', artworkData);
       });
     }
+  }
+
+  placeDecorations() {
+    if (!this.levelData.decorations) return;
+    
+    this.levelData.decorations.forEach(decorationData => {
+      if (this.scene.textures.exists(decorationData.key)) {
+        const decoration = this.scene.add.image(
+          decorationData.x,
+          decorationData.y,
+          decorationData.key
+        );
+        
+        // Apply scale
+        decoration.setScale(decorationData.scale || 1.0);
+        
+        // Set depth to be behind gameplay elements but above background
+        decoration.setDepth(-5);
+        
+        this.decorations.push(decoration);
+      } else {
+        console.warn(`Decoration texture not found: ${decorationData.key}`);
+      }
+    });
+    
+    console.log(`Placed ${this.decorations.length} decorations`);
   }
 
   createCollectible(type, data) {
@@ -442,6 +519,10 @@ export default class LevelSystem {
       this.background.destroy();
       this.background = null;
     }
+    
+    // Destroy all decorations
+    this.decorations.forEach(decoration => decoration.destroy());
+    this.decorations = [];
     
     // Destroy all enemies
     this.enemies.forEach(enemy => enemy.destroy());
