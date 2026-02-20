@@ -96,32 +96,35 @@ export default class GameplayScene extends Phaser.Scene {
   }
 
   startLevelMusic() {
-    // Stop any existing music
-    if (this.currentMusic) {
-      this.currentMusic.stop();
+      // Stop any existing music
+      if (this.currentMusic && typeof this.currentMusic.stop === 'function') {
+        this.currentMusic.stop();
+      }
+
+      // Determine which music to play based on level
+      let musicKey;
+
+      if (this.levelToLoad === 'grotto') {
+        // Final level - play Showdown of Misdeeds
+        musicKey = 'grotto_music';
+      } else {
+        // Levels 1-4 - randomly select from the 5 tracks
+        const randomTracks = ['level_music_1', 'level_music_2', 'level_music_3', 'level_music_4', 'level_music_5'];
+        musicKey = Phaser.Utils.Array.GetRandom(randomTracks);
+      }
+
+      // Play the selected music
+      if (this.cache.audio.exists(musicKey)) {
+        this.currentMusic = this.sound.add(musicKey, { 
+          volume: 0.5, 
+          loop: true 
+        });
+        this.currentMusic.play();
+        console.log(`Playing level music: ${musicKey}`);
+      } else {
+        console.warn(`Level music not found: ${musicKey}`);
+      }
     }
-    
-    // Determine which music to play based on level
-    let musicKey;
-    
-    if (this.levelToLoad === 'grotto') {
-      // Final level - play Showdown of Misdeeds
-      musicKey = 'grotto_music';
-    } else {
-      // Levels 1-4 - randomly select from the 5 tracks
-      const randomTracks = ['level_music_1', 'level_music_2', 'level_music_3', 'level_music_4', 'level_music_5'];
-      musicKey = Phaser.Utils.Array.GetRandom(randomTracks);
-    }
-    
-    // Play the selected music
-    if (this.sound.get(musicKey)) {
-      this.currentMusic = this.sound.play(musicKey, { 
-        volume: 0.5, 
-        loop: true 
-      });
-      console.log(`Playing level music: ${musicKey}`);
-    }
-  }
 
   createUI() {
     // Controls
