@@ -1,14 +1,15 @@
 {
   "name": "seton-hall-quest",
   "version": "1.0.0",
+  "type": "module",
   "description": "A web-based casual action-adventure game set at Seton Hall University",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "keywords": ["game", "phaser", "seton-hall"],
   "author": "",

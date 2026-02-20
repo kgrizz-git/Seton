@@ -109,6 +109,22 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('campus_map', 'assets/sprites/campus-map.jpg');
     this.load.image('hair_relic', 'assets/sprites/hair-relic.png');
     
+    // Load cutscene sprite assets (Requirements 7.2, 13.2)
+    // Emily sprites for cutscenes
+    this.load.image('emily-right', 'assets/sprites/emily-right.png');
+    this.load.image('emily-headshot-for-cutscenes+dialog', 'assets/sprites/emily-headshot-for-cutscenes+dialog.png');
+    
+    // Saint Elizabeth Ann Seton sprites (progression through cutscenes)
+    this.load.image('round-ghost-sprite_0-left', 'assets/sprites/round-ghost-sprite_0-left.png');
+    this.load.image('round-ghost-sprite_0-right', 'assets/sprites/round-ghost-sprite_0-right.png');
+    
+    // Animated .gif files for Saint Elizabeth Ann Seton
+    // Note: Phaser loads .gif files as static images by default.
+    // The CutsceneScene applies visual effects (floating, pulsing, glowing) to simulate animation
+    // and indicate divine/powerful presence for these sprites.
+    this.load.image('angel-flipped', 'assets/sprites/angel-flipped.gif');
+    this.load.image('anne-seton-triumphant', 'assets/sprites/anne-seton-triumphant.gif');
+    
     // Load paintings for collectibles (only 3 available)
     this.load.image('painting_01', 'assets/sprites/paintings/painting-01.png');
     this.load.image('painting_02', 'assets/sprites/paintings/painting-02.png');

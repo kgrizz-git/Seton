@@ -221,36 +221,96 @@ This plan implements a browser-based 2D action-adventure game using JavaScript a
     - **Validates: Requirements 6.1**
 
 - [ ] 10. Implement Cutscene system
-  - [ ] 10.1 Create CutsceneScene
-    - Display dialogue boxes with speaker names
-    - Show character portraits
-    - Display historical content notes
-    - Implement dialogue advancement on key press
+  - [x] 10.1 Create CutsceneScene base class
+    - Create Phaser scene for displaying cutscenes
+    - Implement dialogue box rendering with speaker names
+    - Add character sprite positioning system (left/right sides)
+    - Implement dialogue portrait display (shows when character speaks)
+    - Add historical notes display at bottom of screen
+    - Implement SPACE key dialogue advancement
+    - Add skip cutscene functionality
+    - Handle scene transitions to next level or cutscene
     - _Requirements: 7.2, 7.3, 7.5_
   
-  - [ ] 10.2 Create cutscene data files
-    - Create opening cutscene with Saint Elizabeth Ann Seton
-    - Create mid-game cutscenes for each level
-    - Include historical facts about Seton Hall and Saint Elizabeth
-    - Add satirical complaints about priest portraits
-    - _Requirements: 2.2, 2.3, 2.4, 7.4, 11.1, 11.2_
+  - [x] 10.2 Implement sprite display system for cutscenes
+    - Load and display static sprites (emily-right.png, emily-headshot-for-cutscenes+dialog.png, round-ghost-sprite_0-left.png)
+    - Load and animate .gif files (angel-flipped.gif, anne-seton-triumphant.gif)
+    - Implement sprite positioning (characters on left/right, portraits alongside dialogue)
+    - Handle sprite visibility toggling based on dialogue
+    - Ensure .gif animations play correctly in Phaser
+    - _Requirements: 7.2, 13.2_
   
-  - [ ] 10.3 Integrate cutscenes with gameplay
-    - Trigger cutscenes at story points
+  - [-] 10.3 Create Cutscene 1: The Ghostly Summons (Opening)
+    - Implement parking lot background display
+    - Configure Emily sprite (emily-right.png) and dialogue portrait (emily-headshot-for-cutscenes+dialog.png)
+    - Configure Saint Elizabeth sprite (round-ghost-sprite_0-left.png)
+    - Add complete dialogue sequence (Emily meets ghost, learns about corruption, accepts quest)
+    - Display historical note about Saint Elizabeth Ann Seton (1774-1821, conversion, founded schools)
+    - Transition to campus map showing Parking Lot location
+    - _Requirements: 2.2, 7.4, 11.1_
+  
+  - [ ] 10.4 Create Cutscene 2: The Gallery Complaint (Before Level 2)
+    - Implement campus map background highlighting Walsh Gallery
+    - Configure character sprites (Emily and Saint Elizabeth in ghost form)
+    - Add dialogue about gallery corruption and bad portraits
+    - Display historical note about Walsh Library (opened 1994, Walsh Gallery)
+    - Transition to Level 2 gameplay
+    - _Requirements: 2.3, 7.4, 11.1_
+  
+  - [ ] 10.5 Create Cutscene 3: The Library's Secrets (Before Level 3)
+    - Implement campus map background highlighting Walsh Library
+    - Configure character sprites (Emily and Saint Elizabeth in ghost form)
+    - Add dialogue about miracles and foreshadowing the Grotto
+    - Display historical note about Saint Elizabeth's miracles (Anne Theresa O'Neill healing, 1952)
+    - Transition to Level 3 gameplay
+    - _Requirements: 2.4, 7.4, 11.2_
+  
+  - [ ] 10.6 Create Cutscene 4: The Administrative Evil (Before Level 4)
+    - Implement campus map background highlighting Administration Building
+    - Configure Saint Elizabeth sprite upgrade to angel-flipped.gif (animated angelic form)
+    - Add dialogue revealing Satan has taken over the Grotto
+    - Display historical note about National Shrine Grotto (Emmitsburg, Maryland, oldest US Lourdes replica)
+    - Transition to Level 4 gameplay
+    - _Requirements: 2.4, 7.4, 11.2_
+  
+  - [ ] 10.7 Create Cutscene 5: The Journey to Emmitsburg (Before Level 5)
+    - Implement travel montage backgrounds (leaving campus, highway, arriving at Grotto)
+    - Display Grotto exterior background
+    - Configure Saint Elizabeth sprite (angel-flipped.gif animated form)
+    - Add dialogue about final confrontation with Satan
+    - Display historical note about Mother Seton's life in Emmitsburg
+    - Transition to Level 5 gameplay (The Grotto)
+    - _Requirements: 2.4, 7.4, 11.2_
+  
+  - [ ] 10.8 Create Cutscene 6: Victory and Transfiguration (After Level 5)
+    - Implement cave interior background with lighting effects (darkness to light)
+    - Configure Saint Elizabeth transformation sequence (angel-flipped.gif to anne-seton-triumphant.gif)
+    - Add victory dialogue and saint's glorified form revelation
+    - Display historical note about Saint Elizabeth's canonization (September 14, 1975)
+    - Implement credits roll
+    - Transition to game end
+    - _Requirements: 7.4, 7.6, 11.2_
+  
+  - [ ] 10.9 Integrate cutscenes with game flow
+    - Trigger Cutscene 1 at game start after title screen
+    - Trigger Cutscene 2 after completing Level 1
+    - Trigger Cutscene 3 after completing Level 2
+    - Trigger Cutscene 4 after completing Level 3
+    - Trigger Cutscene 5 after defeating Level 4 boss
+    - Trigger Cutscene 6 after defeating Satan in Level 5
     - Pause gameplay during cutscenes
     - Resume gameplay after cutscene completion
-    - Transition to next scene/level
     - _Requirements: 7.1, 7.6_
   
-  - [ ]* 10.4 Write property test for cutscene trigger
+  - [ ]* 10.10 Write property test for cutscene trigger
     - **Property 14: Cutscene Trigger Pauses Gameplay**
     - **Validates: Requirements 7.1**
   
-  - [ ]* 10.5 Write property test for cutscene advancement
+  - [ ]* 10.11 Write property test for cutscene advancement
     - **Property 15: Cutscene Advancement**
     - **Validates: Requirements 7.3**
   
-  - [ ]* 10.6 Write property test for cutscene completion
+  - [ ]* 10.12 Write property test for cutscene completion
     - **Property 16: Cutscene Completion Resumes Gameplay**
     - **Validates: Requirements 7.6**
 

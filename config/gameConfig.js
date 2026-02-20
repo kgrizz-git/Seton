@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import BootScene from '../src/scenes/BootScene.js';
 import TitleScene from '../src/scenes/TitleScene.js';
 import MenuScene from '../src/scenes/MenuScene.js';
+import CutsceneScene from '../src/scenes/CutsceneScene.js';
 import GameplayScene from '../src/scenes/GameplayScene.js';
 import VictoryScene from '../src/scenes/VictoryScene.js';
 import GameOverScene from '../src/scenes/GameOverScene.js';
@@ -18,7 +19,7 @@ const gameConfig = {
       debug: false
     }
   },
-  scene: [BootScene, TitleScene, MenuScene, GameplayScene, VictoryScene, GameOverScene],
+  scene: [BootScene, TitleScene, MenuScene, CutsceneScene, GameplayScene, VictoryScene, GameOverScene],
   audio: {
     disableWebAudio: false
   },

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { getCutscene } from '../data/cutscenes.js';
 
 export default class MenuScene extends Phaser.Scene {
   constructor() {
@@ -35,7 +36,9 @@ export default class MenuScene extends Phaser.Scene {
     });
     
     newGameBtn.on('pointerdown', () => {
-      this.scene.start('GameplayScene');
+      // Start with opening cutscene (Requirement 2.4)
+      const cutsceneData = getCutscene('opening');
+      this.scene.start('CutsceneScene', cutsceneData);
     });
     
     // Load Game button (placeholder)
