@@ -1,0 +1,55 @@
+{
+  "id": "walsh_library",
+  "name": "Walsh Library",
+  "levelNumber": 3,
+  "duration": "short",
+  "playerSpawn": { "x": 100, "y": 360 },
+  "enemies": [
+    {
+      "type": "corrupt_priest",
+      "x": 350,
+      "y": 300,
+      "patrol": [[350, 300], [450, 300]]
+    },
+    {
+      "type": "clueless_admin",
+      "x": 550,
+      "y": 350,
+      "patrol": [[550, 350], [650, 350]]
+    },
+    {
+      "type": "lazy_student",
+      "x": 700,
+      "y": 450,
+      "patrol": [[700, 450], [800, 450]]
+    }
+  ],
+  "boss": null,
+  "collectibles": {
+    "relics": [
+      { "type": "hair", "x": 400, "y": 250 }
+    ],
+    "artworks": [
+      { "id": "painting_03", "name": "Library Mural", "x": 600, "y": 300, "points": 150 }
+    ]
+  },
+  "decorations": [
+    { "key": "dec_bookshelves", "x": 200, "y": 250, "scale": 1.8 },
+    { "key": "dec_chair_purple3", "x": 450, "y": 450, "scale": 1.0 },
+    { "key": "dec_chair_purple4", "x": 500, "y": 450, "scale": 1.0 },
+    { "key": "dec_couch_red", "x": 750, "y": 400, "scale": 1.5 },
+    { "key": "dec_desk_chair", "x": 300, "y": 350, "scale": 1.3 },
+    { "key": "dec_rug_horizontal", "x": 600, "y": 480, "scale": 1.2 }
+  ],
+  "cutsceneTriggers": [],
+  "completionTrigger": {
+    "type": "allEnemiesDefeated"
+  },
+  "historicalContent": {
+    "description": "Walsh Library, with its iconic domed Rotunda, is a landmark on Seton Hall's campus and serves 332,000 visitors annually.",
+    "facts": [
+      "The library houses print book and journal collections",
+      "It includes the Monsignor William Noé Field Archives and Special Collections Center"
+    ]
+  }
+}

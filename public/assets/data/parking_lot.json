@@ -1,0 +1,49 @@
+{
+  "id": "parking_lot",
+  "name": "Parking Lot",
+  "levelNumber": 1,
+  "duration": "short",
+  "playerSpawn": { "x": 100, "y": 360 },
+  "enemies": [
+    {
+      "type": "lazy_student",
+      "x": 300,
+      "y": 300,
+      "patrol": [[300, 300], [400, 300]]
+    },
+    {
+      "type": "clueless_admin",
+      "x": 500,
+      "y": 400,
+      "patrol": [[500, 400], [600, 400]]
+    }
+  ],
+  "boss": null,
+  "collectibles": {
+    "relics": [
+      { "type": "hair", "x": 350, "y": 250 }
+    ],
+    "artworks": [
+      { "id": "painting_01", "name": "Bad Parking Sign", "x": 450, "y": 350, "points": 50 }
+    ]
+  },
+  "decorations": [
+    { "key": "dec_flower_bush", "x": 200, "y": 450, "scale": 1.2 },
+    { "key": "dec_flowers_potted", "x": 700, "y": 420, "scale": 0.8 },
+    { "key": "dec_fountain", "x": 600, "y": 250, "scale": 1.5 },
+    { "key": "dec_lamppost", "x": 250, "y": 200, "scale": 1.8 },
+    { "key": "dec_tree_full", "x": 800, "y": 300, "scale": 2.0 },
+    { "key": "dec_church", "x": 400, "y": 100, "scale": 2.5 }
+  ],
+  "cutsceneTriggers": [],
+  "completionTrigger": {
+    "type": "allEnemiesDefeated"
+  },
+  "historicalContent": {
+    "description": "The parking lot at Seton Hall University, where students and faculty begin their journey on the 58-acre South Orange campus.",
+    "facts": [
+      "Seton Hall University is located 14 miles from Manhattan",
+      "The campus is in the Village of South Orange, New Jersey"
+    ]
+  }
+}

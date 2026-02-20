@@ -1,0 +1,71 @@
+{
+  "id": "admin_building",
+  "name": "Administration Building",
+  "levelNumber": 4,
+  "duration": "long",
+  "playerSpawn": { "x": 100, "y": 360 },
+  "enemies": [
+    {
+      "type": "clueless_admin",
+      "x": 300,
+      "y": 300,
+      "patrol": [[300, 300], [400, 300]]
+    },
+    {
+      "type": "clueless_admin",
+      "x": 500,
+      "y": 350,
+      "patrol": [[500, 350], [600, 350]]
+    },
+    {
+      "type": "corrupt_priest",
+      "x": 700,
+      "y": 400,
+      "patrol": [[700, 400], [800, 400]]
+    },
+    {
+      "type": "lazy_student",
+      "x": 400,
+      "y": 500,
+      "patrol": [[400, 500], [500, 500]]
+    }
+  ],
+  "boss": {
+    "type": "corrupt_priest_boss",
+    "x": 1000,
+    "y": 360,
+    "triggerX": 900
+  },
+  "collectibles": {
+    "relics": [
+      { "type": "hair", "x": 350, "y": 250 },
+      { "type": "fingerBone", "x": 650, "y": 450 }
+    ],
+    "artworks": [
+      { "id": "painting_04", "name": "Presidential Portrait", "x": 450, "y": 300, "points": 200 },
+      { "id": "painting_05", "name": "University Seal", "x": 750, "y": 350, "points": 250 }
+    ]
+  },
+  "decorations": [
+    { "key": "dec_side_table", "x": 250, "y": 450, "scale": 1.2 },
+    { "key": "dec_chair_purple3", "x": 400, "y": 420, "scale": 1.0 },
+    { "key": "dec_chair_purple4", "x": 450, "y": 420, "scale": 1.0 },
+    { "key": "dec_couch_red", "x": 650, "y": 250, "scale": 1.5 },
+    { "key": "dec_desk_chair", "x": 800, "y": 300, "scale": 1.3 },
+    { "key": "dec_rug_horizontal", "x": 550, "y": 480, "scale": 1.2 }
+  ],
+  "cutsceneTriggers": [
+    { "x": 500, "type": "dialogue", "cutsceneId": "admin_warning" }
+  ],
+  "completionTrigger": {
+    "type": "bossDefeated"
+  },
+  "historicalContent": {
+    "description": "The Administration Building houses the offices that manage Seton Hall University, founded in 1856 by Bishop James Roosevelt Bayley.",
+    "facts": [
+      "Seton Hall is the oldest diocesan university in the United States",
+      "Named after Saint Elizabeth Ann Seton, the first American-born saint",
+      "The university was originally located in Madison, New Jersey before moving to South Orange"
+    ]
+  }
+}
