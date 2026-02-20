@@ -88,8 +88,16 @@ export default class BootScene extends Phaser.Scene {
   loadPlaceholderAssets() {
     // Load real sprite assets
     this.load.image('emily', 'assets/sprites/emily.png');
+    this.load.image('emily_down', 'assets/sprites/emily-down.png');
+    this.load.image('emily_up', 'assets/sprites/emily-up.png');
+    this.load.image('emily_left', 'assets/sprites/emily-left.png');
+    this.load.image('emily_right', 'assets/sprites/emily-right.png');
     this.load.image('priest', 'assets/sprites/Priest.png');
-    this.load.image('admin', 'assets/sprites/admin.png');
+    this.load.image('priest_catholic', 'assets/sprites/priest-catholic.png');
+    this.load.image('teacher_left', 'assets/sprites/teacher-left.png');
+    this.load.image('teacher_right', 'assets/sprites/teacher-right.png');
+    this.load.image('skater_left', 'assets/sprites/skater-left.png');
+    this.load.image('skater_right', 'assets/sprites/skater-right.png');
     this.load.image('student', 'assets/sprites/student.png');
     this.load.image('ghost', 'assets/sprites/ghost.png');
     this.load.image('demon', 'assets/sprites/demon.png');
@@ -99,12 +107,12 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('spectre', 'assets/sprites/spectre.png');
     this.load.image('anne_seton', 'assets/sprites/anne-seton.gif');
     this.load.image('campus_map', 'assets/sprites/campus-map.jpg');
+    this.load.image('hair_relic', 'assets/sprites/hair-relic.png');
     
-    // Load paintings for collectibles
-    for (let i = 1; i <= 39; i++) {
-      const paddedNum = i.toString().padStart(2, '0');
-      this.load.image(`painting_${paddedNum}`, `assets/sprites/paintings/painting-${paddedNum}.jpg`);
-    }
+    // Load paintings for collectibles (only 3 available)
+    this.load.image('painting_01', 'assets/sprites/paintings/painting-01.png');
+    this.load.image('painting_02', 'assets/sprites/paintings/painting-02.png');
+    this.load.image('painting_03', 'assets/sprites/paintings/painting-03.png');
     
     // Load audio
     this.load.audio('ghost_music', 'assets/audio/Ghost (RPG).mp3');
@@ -114,6 +122,15 @@ export default class BootScene extends Phaser.Scene {
     this.load.audio('scream', 'assets/audio/wscream_2.wav');
     this.load.audio('title_music', 'assets/audio/Doll House (Glockenspiel).mp3');
     this.load.audio('fight_music', 'assets/audio/SDM_FightingBack.mp3');
+    this.load.audio('priest_evil_00', 'assets/audio/priest-evil-00.mp3');
+    this.load.audio('priest_evil_02', 'assets/audio/priest-evil-02.mp3');
+    
+    // Load level backgrounds
+    this.load.image('bg_parking_lot', 'assets/backgrounds/parking-lot-bg.png');
+    this.load.image('bg_gallery', 'assets/backgrounds/gallery-bg.png');
+    this.load.image('bg_library', 'assets/backgrounds/library-bg.png');
+    this.load.image('bg_admin', 'assets/backgrounds/admin-bg.png');
+    this.load.image('bg_grotto', 'assets/backgrounds/grotto-bg.png');
     
     // Load title screen decorations
     this.load.image('title_angel', 'assets/sprites/title-screen/angel.gif');

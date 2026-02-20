@@ -45,6 +45,7 @@ export default class LevelSystem {
         "duration": "short",
         "playerSpawn": { "x": 100, "y": 360 },
         "enemies": [
+          { "type": "corrupt_priest", "x": 400, "y": 300, "patrol": [[400, 300], [500, 300]] },
           { "type": "lazy_student", "x": 300, "y": 300, "patrol": [[300, 300], [400, 300]] },
           { "type": "clueless_admin", "x": 500, "y": 400, "patrol": [[500, 400], [600, 400]] }
         ],
@@ -146,6 +147,7 @@ export default class LevelSystem {
         "duration": "long",
         "playerSpawn": { "x": 100, "y": 360 },
         "enemies": [
+          { "type": "corrupt_priest", "x": 800, "y": 350, "patrol": [[800, 350], [900, 350]] },
           { "type": "demon", "x": 300, "y": 300, "patrol": [[300, 300], [400, 300]] },
           { "type": "bat", "x": 450, "y": 200, "patrol": [[450, 200], [550, 200]] },
           { "type": "rat", "x": 250, "y": 450, "patrol": [[250, 450], [350, 450]] },
@@ -164,8 +166,8 @@ export default class LevelSystem {
             { "type": "fingerBone", "x": 600, "y": 450 }
           ],
           "artworks": [
-            { "id": "painting_06", "name": "Grotto Icon", "x": 450, "y": 350, "points": 300 },
-            { "id": "painting_07", "name": "Sacred Relic", "x": 700, "y": 250, "points": 350 }
+            { "id": "painting_03", "name": "Grotto Icon", "x": 450, "y": 350, "points": 300 },
+            { "id": "painting_01", "name": "Sacred Relic", "x": 700, "y": 250, "points": 350 }
           ]
         },
         "cutsceneTriggers": [],
@@ -196,6 +198,9 @@ export default class LevelSystem {
     // Clear existing level
     this.clearLevel();
     
+    // Add level background
+    this.addLevelBackground();
+    
     // Spawn player at start position
     if (this.scene.player) {
       this.scene.player.sprite.setPosition(
@@ -215,6 +220,44 @@ export default class LevelSystem {
     this.displayLevelName();
     
     console.log(`Level ${this.levelData.name} loaded successfully`);
+  }
+
+  addLevelBackground() {
+    // Map level IDs to background keys
+    const backgroundMap = {
+      'parking_lot': 'bg_parking_lot',
+      'walsh_gallery': 'bg_gallery',
+      'walsh_library': 'bg_library',
+      'admin_building': 'bg_admin',
+      'grotto': 'bg_grotto'
+    };
+    
+    const bgKey = backgroundMap[this.currentLevel];
+    
+    if (bgKey && this.scene.textures.exists(bgKey)) {
+      // Create tiled background to fill the screen
+      const bg = this.scene.add.tileSprite(
+        this.scene.cameras.main.width / 2,
+        this.scene.cameras.main.height / 2,
+        this.scene.cameras.main.width,
+        this.scene.cameras.main.height,
+        bgKey
+      );
+      
+      // Scale down gallery background to show more tiles
+      if (this.currentLevel === 'walsh_gallery') {
+        bg.setTileScale(0.5, 0.5); // Show tiles at 50% size (more tiles visible)
+      }
+      
+      bg.setDepth(-10); // Behind everything
+      bg.setScrollFactor(0); // Fixed to camera
+      bg.setAlpha(0.3); // More transparent so gameplay is very clear
+      
+      this.background = bg;
+      console.log(`Added background: ${bgKey}`);
+    } else {
+      console.warn(`Background not found for level: ${this.currentLevel}`);
+    }
   }
 
   spawnEnemies() {
@@ -253,20 +296,39 @@ export default class LevelSystem {
   }
 
   createCollectible(type, data) {
-    const color = type === 'relic' ? 0xffd700 : 0x00ffff;
+    let sprite;
     
-    // Create visual representation
-    const graphics = this.scene.add.graphics();
-    graphics.fillStyle(color, 1);
-    graphics.fillStar(0, 0, 5, 10, 20);
-    graphics.generateTexture(`collectible_${type}_${data.x}_${data.y}`, 40, 40);
-    graphics.destroy();
-    
-    const sprite = this.scene.physics.add.sprite(
-      data.x,
-      data.y,
-      `collectible_${type}_${data.x}_${data.y}`
-    );
+    if (type === 'relic') {
+      // Use actual relic sprites based on type
+      if (data.type === 'hair' && this.scene.textures.exists('hair_relic')) {
+        sprite = this.scene.physics.add.sprite(data.x, data.y, 'hair_relic');
+        sprite.setScale(2.8); // 0.8 * 3.5 = 2.8 (3.5x larger)
+      } else {
+        // Fallback to placeholder
+        const graphics = this.scene.add.graphics();
+        graphics.fillStyle(0xffd700, 1);
+        graphics.fillStar(0, 0, 5, 10, 20);
+        graphics.generateTexture(`collectible_relic_${data.x}_${data.y}`, 40, 40);
+        graphics.destroy();
+        sprite = this.scene.physics.add.sprite(data.x, data.y, `collectible_relic_${data.x}_${data.y}`);
+        sprite.setScale(3.5); // 3.5x larger for placeholders
+      }
+    } else if (type === 'artwork') {
+      // Use actual painting sprites
+      if (data.id && this.scene.textures.exists(data.id)) {
+        sprite = this.scene.physics.add.sprite(data.x, data.y, data.id);
+        sprite.setScale(1.75); // 0.5 * 3.5 = 1.75 (3.5x larger)
+      } else {
+        // Fallback to placeholder
+        const graphics = this.scene.add.graphics();
+        graphics.fillStyle(0x00ffff, 1);
+        graphics.fillStar(0, 0, 5, 10, 20);
+        graphics.generateTexture(`collectible_artwork_${data.x}_${data.y}`, 40, 40);
+        graphics.destroy();
+        sprite = this.scene.physics.add.sprite(data.x, data.y, `collectible_artwork_${data.x}_${data.y}`);
+        sprite.setScale(3.5); // 3.5x larger for placeholders
+      }
+    }
     
     // Add floating animation
     this.scene.tweens.add({
@@ -375,6 +437,12 @@ export default class LevelSystem {
   }
 
   clearLevel() {
+    // Destroy background
+    if (this.background) {
+      this.background.destroy();
+      this.background = null;
+    }
+    
     // Destroy all enemies
     this.enemies.forEach(enemy => enemy.destroy());
     this.enemies = [];

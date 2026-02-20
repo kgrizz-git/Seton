@@ -5,8 +5,12 @@ export default class Player {
     this.scene = scene;
     
     // Create sprite - use real sprite if available, otherwise placeholder
-    if (scene.textures.exists('emily')) {
+    if (scene.textures.exists('emily_down')) {
+      this.sprite = scene.physics.add.sprite(x, y, 'emily_down');
+      this.sprite.setScale(2.5); // Scale up player character
+    } else if (scene.textures.exists('emily')) {
       this.sprite = scene.physics.add.sprite(x, y, 'emily');
+      this.sprite.setScale(2.5);
     } else {
       this.sprite = scene.physics.add.sprite(x, y, null);
       
@@ -36,7 +40,7 @@ export default class Player {
     // State
     this.isInvulnerable = false;
     this.invulnerabilityTimer = null;
-    this.facingDirection = 'right';
+    this.facingDirection = 'down';
     this.isMoving = false;
     
     // Set up physics
@@ -77,31 +81,38 @@ export default class Player {
   handleMovement(delta) {
     let velocityX = 0;
     let velocityY = 0;
+    let newDirection = this.facingDirection;
     
     // Check input (both arrow keys and WASD)
     if (this.cursors.left.isDown || this.wasd.left.isDown) {
       velocityX = -this.speed;
-      this.facingDirection = 'left';
+      newDirection = 'left';
       this.isMoving = true;
     } else if (this.cursors.right.isDown || this.wasd.right.isDown) {
       velocityX = this.speed;
-      this.facingDirection = 'right';
+      newDirection = 'right';
       this.isMoving = true;
     }
     
     if (this.cursors.up.isDown || this.wasd.up.isDown) {
       velocityY = -this.speed;
-      this.facingDirection = 'up';
+      newDirection = 'up';
       this.isMoving = true;
     } else if (this.cursors.down.isDown || this.wasd.down.isDown) {
       velocityY = this.speed;
-      this.facingDirection = 'down';
+      newDirection = 'down';
       this.isMoving = true;
     }
     
     // If no movement input, stop
     if (velocityX === 0 && velocityY === 0) {
       this.isMoving = false;
+    }
+    
+    // Update sprite texture if direction changed
+    if (newDirection !== this.facingDirection) {
+      this.facingDirection = newDirection;
+      this.updateSpriteTexture();
     }
     
     // Normalize diagonal movement
@@ -112,6 +123,22 @@ export default class Player {
     
     // Apply velocity
     this.sprite.setVelocity(velocityX, velocityY);
+  }
+
+  updateSpriteTexture() {
+    // Map direction to sprite texture
+    const textureMap = {
+      'down': 'emily_down',
+      'up': 'emily_up',
+      'left': 'emily_left',
+      'right': 'emily_right'
+    };
+    
+    const newTexture = textureMap[this.facingDirection];
+    
+    if (newTexture && this.scene.textures.exists(newTexture)) {
+      this.sprite.setTexture(newTexture);
+    }
   }
 
   updateAnimations() {

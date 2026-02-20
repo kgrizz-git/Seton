@@ -7,9 +7,9 @@ export default class Enemy {
     
     // Map enemy types to sprite keys
     const spriteMap = {
-      'corrupt_priest': 'priest',
-      'lazy_student': 'student',
-      'clueless_admin': 'admin',
+      'corrupt_priest': 'priest_catholic',
+      'lazy_student': 'skater_right', // Default to right-facing
+      'clueless_admin': 'teacher_right', // Default to right-facing
       'demon': 'demon',
       'bat': 'bat',
       'rat': 'rat',
@@ -22,6 +22,20 @@ export default class Enemy {
     // Create sprite - use real sprite if available, otherwise placeholder
     if (spriteKey && scene.textures.exists(spriteKey)) {
       this.sprite = scene.physics.add.sprite(x, y, spriteKey);
+      
+      // Set scale based on enemy type - each sprite has different native size
+      const scaleMap = {
+        'corrupt_priest': 1.2,   // Priest sprite is larger, scale down to match player
+        'lazy_student': 0.56,    // 0.8 * 0.7 = 0.56 (70% of current size)
+        'clueless_admin': 1.75,  // 2.5 * 0.7 = 1.75 (70% of current size)
+        'demon': 0.7,            // 2.0 * 0.35 = 0.7 (35% of current size)
+        'bat': 1.5,              // Small flying creature
+        'rat': 1.2,              // Very small
+        'skeleton': 2.5,         // Same as player
+        'spectre': 2.2           // Slightly smaller than player
+      };
+      
+      this.sprite.setScale(scaleMap[type] || 2.0);
     } else {
       // Create placeholder sprite based on type
       this.createPlaceholderSprite(type);
@@ -37,10 +51,20 @@ export default class Enemy {
     this.currentPatrolIndex = 0;
     this.detectionRange = this.getDetectionRange(type);
     this.attackRange = this.getAttackRange(type);
+    this.facingDirection = 'right'; // Track facing direction for directional sprites
     
-    // Attack cooldown
+    // Attack cooldown - different rates for different enemy types
     this.attackCooldown = 0;
-    this.attackCooldownTime = 2000; // 2 seconds
+    if (type === 'corrupt_priest' || type === 'clueless_admin') {
+      this.attackCooldownTime = 4000; // 4 seconds (half the rate)
+    } else {
+      this.attackCooldownTime = 2000; // 2 seconds for other enemies
+    }
+    
+    // Evil laugh timer for corrupt priests
+    this.evilLaughTimer = 0;
+    this.evilLaughInterval = 1000; // First laugh after 1 second
+    this.hasLaughedOnce = false; // Track if first laugh has happened
     
     // Dialogue
     this.dialogue = this.getDialogueForType(type);
@@ -93,7 +117,7 @@ export default class Enemy {
 
   getDetectionRange(type) {
     const ranges = {
-      corrupt_priest: 200,
+      corrupt_priest: 500,  // Increased detection range for priests
       lazy_student: 150,
       clueless_admin: 180,
       demon: 250,
@@ -183,6 +207,20 @@ export default class Enemy {
       this.attackCooldown -= delta;
     }
     
+    // Evil laugh for corrupt priests
+    if (this.type === 'corrupt_priest') {
+      this.evilLaughTimer += delta;
+      if (this.evilLaughTimer >= this.evilLaughInterval) {
+        this.playEvilLaugh();
+        this.evilLaughTimer = 0;
+        // After first laugh, set interval to 5 seconds
+        if (!this.hasLaughedOnce) {
+          this.hasLaughedOnce = true;
+          this.evilLaughInterval = 5000; // 5 seconds for subsequent laughs
+        }
+      }
+    }
+    
     // Calculate distance to player
     const distanceToPlayer = Phaser.Math.Distance.Between(
       this.sprite.x, this.sprite.y,
@@ -199,6 +237,19 @@ export default class Enemy {
     } else {
       this.state = 'patrol';
       this.patrol();
+    }
+  }
+
+  playEvilLaugh() {
+    // Randomly choose between the two evil laugh sounds
+    const soundKey = Math.random() < 0.5 ? 'priest_evil_00' : 'priest_evil_02';
+    
+    // Check if sound exists in cache and play it
+    if (this.scene.cache.audio.exists(soundKey)) {
+      this.scene.sound.play(soundKey, { volume: 0.4 });
+      console.log(`Playing evil laugh: ${soundKey}`);
+    } else {
+      console.warn(`Evil laugh sound not found: ${soundKey}`);
     }
   }
 
@@ -223,6 +274,19 @@ export default class Enemy {
         this.sprite.x, this.sprite.y,
         target[0], target[1]
       );
+      
+      // Update facing direction for clueless_admin (teacher) and lazy_student (skater)
+      if (this.type === 'clueless_admin' || this.type === 'lazy_student') {
+        const velocityX = Math.cos(angle) * this.speed;
+        if (velocityX < 0 && this.facingDirection !== 'left') {
+          this.facingDirection = 'left';
+          this.updateDirectionalSprite();
+        } else if (velocityX > 0 && this.facingDirection !== 'right') {
+          this.facingDirection = 'right';
+          this.updateDirectionalSprite();
+        }
+      }
+      
       this.sprite.setVelocity(
         Math.cos(angle) * this.speed,
         Math.sin(angle) * this.speed
@@ -236,10 +300,39 @@ export default class Enemy {
       player.sprite.x, player.sprite.y
     );
     
+    // Update facing direction for clueless_admin (teacher) and lazy_student (skater)
+    if (this.type === 'clueless_admin' || this.type === 'lazy_student') {
+      const velocityX = Math.cos(angle) * this.speed;
+      if (velocityX < 0 && this.facingDirection !== 'left') {
+        this.facingDirection = 'left';
+        this.updateDirectionalSprite();
+      } else if (velocityX > 0 && this.facingDirection !== 'right') {
+        this.facingDirection = 'right';
+        this.updateDirectionalSprite();
+      }
+    }
+    
     this.sprite.setVelocity(
       Math.cos(angle) * this.speed,
       Math.sin(angle) * this.speed
     );
+  }
+
+  updateDirectionalSprite() {
+    // Handle directional sprites for clueless_admin (teacher) and lazy_student (skater)
+    let textureKey;
+    
+    if (this.type === 'clueless_admin') {
+      textureKey = this.facingDirection === 'left' ? 'teacher_left' : 'teacher_right';
+    } else if (this.type === 'lazy_student') {
+      textureKey = this.facingDirection === 'left' ? 'skater_left' : 'skater_right';
+    } else {
+      return; // Not a directional sprite type
+    }
+    
+    if (this.scene.textures.exists(textureKey)) {
+      this.sprite.setTexture(textureKey);
+    }
   }
 
   attack(player) {

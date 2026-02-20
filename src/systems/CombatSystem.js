@@ -11,9 +11,9 @@ export default class CombatSystem {
   }
 
   createProjectileTextures() {
-    // Use random paintings for projectiles if available
+    // Use available paintings for projectiles
     const paintingKeys = [];
-    for (let i = 1; i <= 39; i++) {
+    for (let i = 1; i <= 3; i++) {
       const key = `painting_${i.toString().padStart(2, '0')}`;
       if (this.scene.textures.exists(key)) {
         paintingKeys.push(key);
@@ -53,9 +53,9 @@ export default class CombatSystem {
     
     const projectile = this.playerProjectiles.create(x, y, textureKey);
     
-    // Scale down paintings to reasonable projectile size
+    // Scale paintings to about 1/3 player character size
     if (this.paintingKeys && this.paintingKeys.length > 0) {
-      projectile.setScale(0.1);
+      projectile.setScale(0.8); // Paintings should be visible but not too large
     }
     
     projectile.damage = damage;
@@ -103,9 +103,9 @@ export default class CombatSystem {
     
     const projectile = this.enemyProjectiles.create(x, y, textureKey);
     
-    // Scale down paintings to reasonable projectile size
+    // Scale paintings to about 1/3 player character size
     if (this.paintingKeys && this.paintingKeys.length > 0) {
-      projectile.setScale(0.1);
+      projectile.setScale(0.8); // Paintings should be visible but not too large
     }
     
     projectile.damage = damage;
