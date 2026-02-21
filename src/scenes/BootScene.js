@@ -141,13 +141,14 @@ export default class BootScene extends Phaser.Scene {
     this.load.audio('priest_evil_00', 'assets/audio/priest-evil-00.mp3');
     this.load.audio('priest_evil_02', 'assets/audio/priest-evil-02.mp3');
     
-    // Level music tracks (randomly selected for levels 1-4, specific for level 5)
-    this.load.audio('level_music_1', 'assets/audio/Ten to Life (Tickled to Death).ogg');
-    this.load.audio('level_music_2', 'assets/audio/symphony - 01 Ghost Step.ogg');
+    // Level music tracks (fixed assignments per level/cutscene)
+    this.load.audio('level_music_1', 'assets/audio/SDM_FightingBack.mp3');
+    this.load.audio('level_music_2', 'assets/audio/Ghost (RPG).mp3');
     this.load.audio('level_music_3', 'assets/audio/WTF! Ghost!.mp3');
     this.load.audio('level_music_4', 'assets/audio/Cakeflaps - Cate.ogg');
-    this.load.audio('level_music_5', 'assets/audio/SDM_FightingBack.mp3');
+    this.load.audio('level_music_5', 'assets/audio/Showdown of Misdeeds - MP3.mp3');
     this.load.audio('grotto_music', 'assets/audio/Showdown of Misdeeds - MP3.mp3');
+    this.load.audio('victory_music', 'assets/audio/Ten to Life (Tickled to Death).ogg');
     
     // Sound effects for combat and game events
     this.load.audio('hit1_sound', 'assets/audio/hit1.mp3');

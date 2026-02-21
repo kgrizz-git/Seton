@@ -27,73 +27,76 @@ export default class GameplayScene extends Phaser.Scene {
   }
 
   async create() {
-    console.log('GameplayScene: Creating gameplay...');
-    
-    // Create player
-    this.player = new Player(this, 640, 360);
-    
-    // Create combat system
-    this.combatSystem = new CombatSystem(this);
-    
-    // Create level system
-    this.levelSystem = new LevelSystem(this);
-    
-    // Create relic manager
-    this.relicManager = new RelicManager(this);
-    
-    // Load the level (no longer async, returns immediately)
-    this.levelSystem.loadLevel(this.levelToLoad);
-    
-    // Start level music
-    this.startLevelMusic();
-    
-    // Set up event listeners
-    this.events.on('playerAttack', (attackData) => {
-      this.combatSystem.createPlayerProjectile(attackData);
-    });
-    
-    this.events.on('enemyAttack', (attackData) => {
-      this.combatSystem.createEnemyProjectile(
-        attackData.x,
-        attackData.y,
-        attackData.targetX,
-        attackData.targetY,
-        attackData.damage,
-        attackData.speed
-      );
-    });
-    
-    this.events.on('playerDied', () => {
-      console.log('Game Over!');
-      // Stop music
-      if (this.currentMusic) {
-        this.currentMusic.stop();
-      }
-      const totalPoints = this.player.inventory.artworks.reduce((sum, art) => sum + art.points, 0);
-      const artworksCount = this.player.inventory.artworks.length;
-      this.scene.start('GameOverScene', { score: totalPoints, artworks: artworksCount });
-    });
-    
-    this.events.on('levelComplete', (levelNum) => {
-      this.handleLevelComplete(levelNum);
-    });
-    
-    this.events.on('artworkCollected', (artwork) => {
-      console.log(`Collected artwork worth ${artwork.points} points!`);
-    });
-    
-    this.events.on('relicActivated', (relicType, player) => {
-      this.relicManager.activateRelic(relicType, player, this.levelSystem.enemies);
-    });
-    
-    // Pause menu handling
-    this.input.keyboard.on('keydown-ESC', () => {
-      this.togglePause();
-    });
-    
-    // UI
-    this.createUI();
-  }
+      console.log('GameplayScene: Creating gameplay...');
+
+      // Stop all previous music before starting level music
+      this.sound.stopAll();
+
+      // Create player
+      this.player = new Player(this, 640, 360);
+
+      // Create combat system
+      this.combatSystem = new CombatSystem(this);
+
+      // Create level system
+      this.levelSystem = new LevelSystem(this);
+
+      // Create relic manager
+      this.relicManager = new RelicManager(this);
+
+      // Load the level (no longer async, returns immediately)
+      this.levelSystem.loadLevel(this.levelToLoad);
+
+      // Start level music
+      this.startLevelMusic();
+
+      // Set up event listeners
+      this.events.on('playerAttack', (attackData) => {
+        this.combatSystem.createPlayerProjectile(attackData);
+      });
+
+      this.events.on('enemyAttack', (attackData) => {
+        this.combatSystem.createEnemyProjectile(
+          attackData.x,
+          attackData.y,
+          attackData.targetX,
+          attackData.targetY,
+          attackData.damage,
+          attackData.speed
+        );
+      });
+
+      this.events.on('playerDied', () => {
+        console.log('Game Over!');
+        // Stop music
+        if (this.currentMusic) {
+          this.currentMusic.stop();
+        }
+        const totalPoints = this.player.inventory.artworks.reduce((sum, art) => sum + art.points, 0);
+        const artworksCount = this.player.inventory.artworks.length;
+        this.scene.start('GameOverScene', { score: totalPoints, artworks: artworksCount });
+      });
+
+      this.events.on('levelComplete', (levelNum) => {
+        this.handleLevelComplete(levelNum);
+      });
+
+      this.events.on('artworkCollected', (artwork) => {
+        console.log(`Collected artwork worth ${artwork.points} points!`);
+      });
+
+      this.events.on('relicActivated', (relicType, player) => {
+        this.relicManager.activateRelic(relicType, player, this.levelSystem.enemies);
+      });
+
+      // Pause menu handling
+      this.input.keyboard.on('keydown-ESC', () => {
+        this.togglePause();
+      });
+
+      // UI
+      this.createUI();
+    }
 
   startLevelMusic() {
       // Stop any existing music
@@ -101,17 +104,16 @@ export default class GameplayScene extends Phaser.Scene {
         this.currentMusic.stop();
       }
 
-      // Determine which music to play based on level
-      let musicKey;
+      // Map level names to music tracks (fixed assignments)
+      const levelMusicMap = {
+        'parking_lot': 'level_music_1',      // SDM_FightingBack
+        'walsh_gallery': 'level_music_2',    // Ghost (RPG)
+        'walsh_library': 'level_music_3',    // WTF! Ghost!
+        'admin_building': 'level_music_4',   // Cakeflaps - Cate
+        'grotto': 'level_music_5'            // Showdown of Misdeeds
+      };
 
-      if (this.levelToLoad === 'grotto') {
-        // Final level - play Showdown of Misdeeds
-        musicKey = 'grotto_music';
-      } else {
-        // Levels 1-4 - randomly select from the 5 tracks
-        const randomTracks = ['level_music_1', 'level_music_2', 'level_music_3', 'level_music_4', 'level_music_5'];
-        musicKey = Phaser.Utils.Array.GetRandom(randomTracks);
-      }
+      const musicKey = levelMusicMap[this.levelToLoad] || 'level_music_1';
 
       // Play the selected music
       if (this.cache.audio.exists(musicKey)) {
@@ -120,7 +122,7 @@ export default class GameplayScene extends Phaser.Scene {
           loop: true 
         });
         this.currentMusic.play();
-        console.log(`Playing level music: ${musicKey}`);
+        console.log(`Playing level music: ${musicKey} for ${this.levelToLoad}`);
       } else {
         console.warn(`Level music not found: ${musicKey}`);
       }

@@ -43,44 +43,61 @@ export default class CutsceneScene extends Phaser.Scene {
   }
 
   create() {
-    console.log(`CutsceneScene: Creating cutscene ${this.cutsceneId}...`);
-    
-    // Start cutscene music
-    this.startCutsceneMusic();
-    
-    // Create background
-    this.createBackground();
-    
-    // Create character sprites
-    this.createCharacterSprites();
-    
-    // Create dialogue box
-    this.createDialogueBox();
-    
-    // Create historical notes area
-    this.createHistoricalNotesArea();
-    
-    // Create skip prompt
-    this.createSkipPrompt();
-    
-    // Display first dialogue
-    this.displayDialogue(0);
-    
-    // Setup input handlers
-    this.setupInputHandlers();
-  }
+      console.log(`CutsceneScene: Creating cutscene ${this.cutsceneId}...`);
+
+      // Stop all previous music before starting cutscene music
+      this.sound.stopAll();
+
+      // Start cutscene music
+      this.startCutsceneMusic();
+
+      // Create background
+      this.createBackground();
+
+      // Create character sprites
+      this.createCharacterSprites();
+
+      // Create dialogue box
+      this.createDialogueBox();
+
+      // Create historical notes area
+      this.createHistoricalNotesArea();
+
+      // Create skip prompt
+      this.createSkipPrompt();
+
+      // Display first dialogue
+      this.displayDialogue(0);
+
+      // Setup input handlers
+      this.setupInputHandlers();
+    }
 
   startCutsceneMusic() {
-    // Use a calm atmospheric track for cutscenes
-    // Using "Doll House (Glockenspiel).mp3" for its gentle, contemplative mood
-    if (this.sound.get('title_music')) {
-      this.cutsceneMusic = this.sound.play('title_music', {
-        volume: 0.4,
-        loop: true
-      });
-      console.log('Playing cutscene music');
+      // Map cutscene numbers to music tracks (matching their corresponding levels)
+      const cutsceneMusicMap = {
+        1: 'level_music_1',      // SDM_FightingBack
+        2: 'level_music_2',      // Ghost (RPG)
+        3: 'level_music_3',      // WTF! Ghost!
+        4: 'level_music_4',      // Cakeflaps - Cate
+        5: 'level_music_5',      // Showdown of Misdeeds
+        6: 'victory_music'       // Ten to Life (Tickled to Death)
+      };
+
+      const musicKey = cutsceneMusicMap[this.cutsceneNumber] || 'level_music_1';
+
+      if (this.cache.audio.exists(musicKey)) {
+        this.cutsceneMusic = this.sound.add(musicKey, {
+          volume: 0.4,
+          loop: true  // Loop all cutscene music including victory
+        });
+        this.cutsceneMusic.play();
+        console.log(`Playing cutscene ${this.cutsceneNumber} music: ${musicKey}`);
+      } else {
+        this.cutsceneMusic = null;
+        console.warn(`Cutscene music not found: ${musicKey}`);
+      }
     }
-  }
 
   createBackground() {
     // Add background image or color
@@ -204,25 +221,33 @@ export default class CutsceneScene extends Phaser.Scene {
   }
 
   setupInputHandlers() {
-    // SPACE key to advance dialogue (Requirement 7.3)
-    this.input.keyboard.on('keydown-SPACE', () => {
-      if (this.canAdvance && !this.skipRequested) {
-        this.advanceDialogue();
-      }
-    });
-    
-    // ESC key to skip cutscene
-    this.input.keyboard.on('keydown-ESC', () => {
-      this.skipCutscene();
-    });
-    
-    // Also allow ENTER to advance
-    this.input.keyboard.on('keydown-ENTER', () => {
-      if (this.canAdvance && !this.skipRequested) {
-        this.advanceDialogue();
-      }
-    });
-  }
+      // SPACE key to advance dialogue (Requirement 7.3)
+      this.input.keyboard.on('keydown-SPACE', () => {
+        if (this.canAdvance && !this.skipRequested) {
+          this.advanceDialogue();
+        }
+      });
+
+      // ESC key to skip cutscene
+      this.input.keyboard.on('keydown-ESC', () => {
+        console.log('ESC key pressed');
+        this.skipCutscene();
+      });
+
+      // Also allow ENTER to advance
+      this.input.keyboard.on('keydown-ENTER', () => {
+        if (this.canAdvance && !this.skipRequested) {
+          this.advanceDialogue();
+        }
+      });
+
+      // Alternative: Add ESC key as a Key object for better compatibility
+      const escKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+      escKey.on('down', () => {
+        console.log('ESC key down event');
+        this.skipCutscene();
+      });
+    }
 
   /**
    * Display dialogue segment at given index
@@ -526,42 +551,42 @@ export default class CutsceneScene extends Phaser.Scene {
    * Skip cutscene and transition to next scene
    */
   skipCutscene() {
-    if (this.skipRequested) return;
-    
-    this.skipRequested = true;
-    console.log('Skipping cutscene...');
-    
-    // Stop cutscene music
-    if (this.cutsceneMusic) {
-      this.cutsceneMusic.stop();
+      if (this.skipRequested) return;
+
+      this.skipRequested = true;
+      console.log('Skipping cutscene...');
+
+      // Stop cutscene music
+      if (this.cutsceneMusic && typeof this.cutsceneMusic.stop === 'function') {
+        this.cutsceneMusic.stop();
+      }
+
+      // Fade out
+      this.cameras.main.fadeOut(500, 0, 0, 0);
+
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.transitionToNextScene();
+      });
     }
-    
-    // Fade out
-    this.cameras.main.fadeOut(500, 0, 0, 0);
-    
-    this.cameras.main.once('camerafadeoutcomplete', () => {
-      this.transitionToNextScene();
-    });
-  }
 
   /**
    * End cutscene and transition to next scene (Requirement 7.4)
    */
   endCutscene() {
-    console.log('Cutscene complete, transitioning to next scene...');
-    
-    // Stop cutscene music
-    if (this.cutsceneMusic) {
-      this.cutsceneMusic.stop();
+      console.log('Cutscene complete, transitioning to next scene...');
+
+      // Stop cutscene music
+      if (this.cutsceneMusic && typeof this.cutsceneMusic.stop === 'function') {
+        this.cutsceneMusic.stop();
+      }
+
+      // Fade out
+      this.cameras.main.fadeOut(1000, 0, 0, 0);
+
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.transitionToNextScene();
+      });
     }
-    
-    // Fade out
-    this.cameras.main.fadeOut(1000, 0, 0, 0);
-    
-    this.cameras.main.once('camerafadeoutcomplete', () => {
-      this.transitionToNextScene();
-    });
-  }
 
   /**
    * Handle scene transitions to next level or cutscene

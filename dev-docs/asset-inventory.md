@@ -134,12 +134,31 @@ Decorative sprites placed in levels to enhance visual atmosphere. Scaled between
 
 ## Music
 
+### Music Assignments by Scene/Level
+
+| Cutscene/Level | Music Track | File | Status |
+|----------------|-------------|------|--------|
+| Title Screen | Doll House (Glockenspiel) | `Doll House (Glockenspiel).mp3` | ✓ Active |
+| Cutscene 1 & Level 1 (Parking Lot) | SDM_FightingBack | `SDM_FightingBack.mp3` | ✓ Active |
+| Cutscene 2 & Level 2 (Gallery) | Ghost (RPG) | `Ghost (RPG).mp3` | ✓ Active |
+| Cutscene 3 & Level 3 (Library) | WTF! Ghost! | `WTF! Ghost!.mp3` | ✓ Active |
+| Cutscene 4 & Level 4 (Admin) | Cakeflaps - Cate | `Cakeflaps - Cate.ogg` | ✓ Active |
+| Cutscene 5 & Level 5 (Grotto) | Showdown of Misdeeds | `Showdown of Misdeeds - MP3.mp3` | ✓ Active |
+| Cutscene 6 (Victory) | Ten to Life (Tickled to Death) | `Ten to Life (Tickled to Death).ogg` | ✓ Active |
+
+### All Music Files
+
 | Path | Filename | Used For | Status |
 |------|----------|----------|--------|
 | `assets/audio/` | `Doll House (Glockenspiel).mp3` | Title screen music (looping) | ✓ Active |
-| `assets/audio/` | `Ghost (RPG).mp3` | Gameplay background music | ✓ Active |
-| `assets/audio/` | `SDM_FightingBack.mp3` | Combat/fight music | ✓ Active |
-| `assets/audio/` | `symphony - 01 Ghost Step.ogg` | Ghost step music | ✓ Active |
+| `assets/audio/` | `SDM_FightingBack.mp3` | Cutscene 1 & Level 1 music | ✓ Active |
+| `assets/audio/` | `Ghost (RPG).mp3` | Cutscene 2 & Level 2 music | ✓ Active |
+| `assets/audio/` | `WTF! Ghost!.mp3` | Cutscene 3 & Level 3 music | ✓ Active |
+| `assets/audio/` | `Cakeflaps - Cate.ogg` | Cutscene 4 & Level 4 music | ✓ Active |
+| `assets/audio/` | `Showdown of Misdeeds - MP3.mp3` | Cutscene 5 & Level 5 music | ✓ Active |
+| `assets/audio/` | `Ten to Life (Tickled to Death).ogg` | Cutscene 6 (Victory) music | ✓ Active |
+| `assets/audio/` | `Jingle_Win_00.mp3` | Alternate music (loaded but not assigned) | ⚠️ Loaded |
+| `assets/audio/` | `symphony - 01 Ghost Step.ogg` | Alternate music (loaded but not assigned) | ⚠️ Loaded |
 
 ## Sound Effects
 
@@ -157,12 +176,9 @@ These audio files exist but are not currently loaded or used:
 
 | Path | Filename | Status |
 |------|----------|--------|
-| `assets/audio/` | `Cakeflaps - Cate.ogg` | ⚠️ Not loaded |
 | `assets/audio/` | `Camille_Saint-Saens-Aquarium.ogg` | ⚠️ Not loaded |
-| `assets/audio/` | `Ten to Life (Tickled to Death).ogg` | ⚠️ Not loaded |
 | `assets/audio/` | `theramin-crazy.wav` | ⚠️ Not loaded |
 | `assets/audio/` | `Viktor Kraus - The Pilgrimage.mp3` | ⚠️ Not loaded |
-| `assets/audio/` | `WTF! Ghost!.mp3` | ⚠️ Not loaded |
 
 ## Missing Assets & Placeholders
 

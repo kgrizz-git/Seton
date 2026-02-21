@@ -20,7 +20,7 @@
 export const cutscene1 = {
   id: 'opening',
   cutsceneNumber: 1,
-  background: 'parking_lot_background',
+  background: 'bg_parking_lot',
   nextScene: 'CampusMapScene',
   nextLevel: 1,
   dialogue: [
@@ -117,7 +117,7 @@ export const cutscene1 = {
 export const cutscene2 = {
   id: 'gallery_complaint',
   cutsceneNumber: 2,
-  background: 'campus_map_background',
+  background: 'bg_gallery',
   nextScene: 'CampusMapScene',
   nextLevel: 2,
   dialogue: [
@@ -178,7 +178,7 @@ export const cutscene2 = {
 export const cutscene3 = {
   id: 'library_secrets',
   cutsceneNumber: 3,
-  background: 'campus_map_background',
+  background: 'bg_library',
   nextScene: 'CampusMapScene',
   nextLevel: 3,
   dialogue: [
@@ -239,7 +239,7 @@ export const cutscene3 = {
 export const cutscene4 = {
   id: 'administrative_evil',
   cutsceneNumber: 4,
-  background: 'campus_map_background',
+  background: 'bg_admin',
   nextScene: 'CampusMapScene',
   nextLevel: 4,
   dialogue: [
@@ -340,7 +340,7 @@ export const cutscene4 = {
 export const cutscene5 = {
   id: 'journey_to_emmitsburg',
   cutsceneNumber: 5,
-  background: 'grotto_exterior_background',
+  background: 'bg_grotto',
   nextScene: 'CampusMapScene',
   nextLevel: 5,
   dialogue: [
@@ -445,7 +445,7 @@ export const cutscene5 = {
 export const cutscene6 = {
   id: 'victory_transfiguration',
   cutsceneNumber: 6,
-  background: 'cave_interior_background',
+  background: 'bg_grotto',
   nextScene: 'VictoryScene',
   nextLevel: null,
   dialogue: [

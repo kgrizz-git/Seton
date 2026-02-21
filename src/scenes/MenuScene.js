@@ -9,8 +9,17 @@ export default class MenuScene extends Phaser.Scene {
   create() {
       console.log('MenuScene: Creating menu...');
 
-      // Stop all music from previous scenes
+      // Stop all music from previous scenes (aggressive approach)
       this.sound.stopAll();
+
+      // Also stop any specific music that might be playing
+      const titleMusic = this.sound.get('title_music');
+      if (titleMusic) {
+        titleMusic.stop();
+        titleMusic.destroy();
+      }
+
+      console.log('All sounds stopped, active sounds:', this.sound.sounds.length);
 
       // Background
       this.cameras.main.setBackgroundColor('#2d2d2d');
